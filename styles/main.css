@@ -1,0 +1,2019 @@
+/* === بداية التعديلات: تحسينات شاملة === */
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* تحسين الأداء البصري للخطوط */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* CSS Variables */
+:root {
+    /* Colors - نظام ألوان محدث وأكثر انسجاماً */
+    --primary-color: #f0a500; /* درجة ذهبية أكثر دفئاً وحيوية */
+    --primary-color-darker: #d48f00;
+    --secondary-color: #082f4e; /* أزرق بحري عميق */
+    --secondary-color-lighter: #1c4b70;
+    --accent-color: #e63946; /* أحمر أكثر وضوحاً */
+    --text-color: #34495e;  /* لون نص أغمق قليلاً لتحسين القراءة */
+    --text-light: #8494a6; /* لون نص فاتح أكثر وضوحاً */
+    --light-bg: #f9fafb; /* خلفية فاتحة جداً ونظيفة */
+    --white: #ffffff;
+    --dark: #111827; /* أسود معتدل */
+    --border-color: #e5e7eb;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-color-darker));
+    --gradient-secondary: linear-gradient(135deg, var(--secondary-color), var(--secondary-color-lighter));
+    --gradient-accent: linear-gradient(135deg, var(--accent-color), #f97316); /* إضافة تدرج للون التمييز */
+    --gradient-bg: linear-gradient(135deg, var(--light-bg), #eef2f9); /* تدرج للخلفيات */
+
+    /* Typography - استخدام خط واحد لتبسيط الهوية البصرية وتحسين الأداء */
+    --main-font: 'Cairo', 'Tajawal', 'Arial', sans-serif; /* إضافة خطوط احتياطية */
+
+    /* Spacing - زيادة طفيفة في بعض المسافات للتهوية */
+    --spacing-xxs: 0.25rem;
+    --spacing-xs: 0.6rem;  /* زيادة طفيفة */
+    --spacing-sm: 1.2rem; /* زيادة طفيفة */
+    --spacing-md: 2.5rem; /* زيادة */
+    --spacing-lg: 4rem;  /* زيادة */
+    --spacing-xl: 6rem;  /* زيادة */
+
+    /* Border Radius - الحفاظ على الانسيابية */
+    --border-radius-sm: 5px;  /* تعديل طفيف */
+    --border-radius-md: 10px; /* تعديل طفيف */
+    --border-radius-lg: 20px; /* تعديل طفيف */
+    --border-radius-xl: 30px; /* تعديل طفيف */
+    --border-radius-circle: 50%;
+
+    /* Box Shadow - ظلال أكثر نعومة واحترافية */
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    --box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --box-shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.12);
+    --box-shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* إضافة ظل داخلي */
+
+    /* Transitions - تعديل التوقيت لمنح الحركة نعومة أكبر */
+    --transition-fast: 0.2s ease-in-out;
+    --transition-normal: 0.35s ease-in-out; /* زيادة طفيفة */
+    --transition-slow: 0.6s ease-in-out;
+}
+
+/* Page Load Animation */
+body {
+    font-family: var(--main-font); /* توحيد الخط */
+    color: var(--text-color);
+    line-height: 1.7; /* زيادة طفيفة لتحسين القراءة */
+    background-color: var(--white);
+    overflow-x: hidden; /* منع التمرير الأفقي غير المرغوب */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.page-loaded {
+    opacity: 1;
+}
+
+/* Base Styles */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    /* تحسين تجربة التمرير */
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Material Icons Styles */
+.material-icons {
+    vertical-align: middle;
+    font-size: 1.5rem; /* Default size */
+    margin: 0 0.2rem;
+    line-height: 1;
+}
+
+/* Different sizes for Material Icons */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--main-font); /* توحيد الخط */
+    font-weight: 700;
+    line-height: 1.35; /* تحسين ارتفاع السطر للعناوين */
+    margin-bottom: var(--spacing-sm);
+    color: var(--dark);
+    letter-spacing: -0.5px; /* تضييق المسافات بين الحروف قليلاً */
+    text-align: right; /* ضمان محاذاة النص لليمين في العناوين */
+}
+
+h1 { font-size: 2.8rem; } /* زيادة طفيفة */
+h2 { font-size: 2.2rem; } /* زيادة طفيفة */
+h3 { font-size: 1.6rem; } /* زيادة طفيفة */
+h4 { font-size: 1.3rem; } /* زيادة طفيفة */
+
+p {
+    margin-bottom: var(--spacing-sm);
+    max-width: 70ch; /* تحسين عرض الفقرات للقراءة */
+    color: var(--text-color); /* تأكيد لون النص */
+    text-align: right; /* ضمان محاذاة النص لليمين */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+    font-weight: 600; /* جعل الروابط أكثر بروزاً */
+}
+
+a:hover {
+    color: var(--primary-color-darker); /* استخدام درجة أغمق عند المرور */
+}
+
+ul, ol {
+    list-style-position: inside;
+    margin-bottom: var(--spacing-sm);
+    padding-left: var(--spacing-sm); /* إضافة padding لتمييز القوائم */
+}
+
+img, svg { /* تطبيق القاعدة على svg أيضاً */
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle; /* محاذاة الصور بشكل أفضل */
+}
+
+/* Accessibility Focus Styles */
+*:focus-visible {
+    outline: 3px solid var(--secondary-color-lighter);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 4px rgba(28, 75, 112, 0.3); /* إضافة ظل لزيادة الوضوح */
+    border-radius: var(--border-radius-sm);
+}
+/* إزالة التحديد عند التركيز بالفأرة للحفاظ على الجمالية */
+*:focus:not(:focus-visible) {
+   outline: none;
+   box-shadow: none;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+    color: var(--secondary-color); /* جعل العنوان باللون الثانوي */
+    font-weight: 700; /* تأكيد وزن الخط */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px; /* زيادة عرض الخط */
+    height: 4px; /* زيادة سمك الخط */
+    background: var(--gradient-primary); /* استخدام التدرج للخط */
+    border-radius: 2px; /* تدوير حواف الخط */
+    /* إضافة حركة بسيطة للخط عند التحميل (إذا كان مدعوماً بـ JS) */
+    /* أو عند المرور (كمثال هنا) */
+    transition: width var(--transition-slow);
+}
+.section-title:hover::after {
+     width: 130px; /* مثال لتأثير بسيط عند المرور */
+}
+
+/* Section Description */
+.section-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-lg);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Specific styles for the Why Al-Nasr section */
+#why-alnasr {
+    background: var(--gradient-bg);
+    padding: var(--spacing-xl) 0;
+    position: relative;
+    overflow: visible;
+    border-top: 5px solid var(--primary-color);
+    border-bottom: 5px solid var(--primary-color);
+}
+
+#why-alnasr .section-title {
+    color: var(--secondary-color);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    opacity: 1;
+    visibility: visible;
+}
+
+#why-alnasr .section-title::after {
+    width: 150px;
+    height: 5px;
+}
+
+#why-alnasr .features-grid {
+    margin-top: 3rem;
+}
+
+#why-alnasr .feature-card {
+    background-color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--box-shadow);
+    text-align: right;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    border: 2px solid var(--primary-color);
+    opacity: 1;
+    visibility: visible;
+}
+
+#why-alnasr .feature-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    opacity: 1;
+    visibility: visible;
+}
+
+#why-alnasr .features-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+#why-alnasr .features-cta .btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* إزالة النمط .animated المنفصل وتبسيطه */
+
+/* Layout */
+.container {
+    width: 92%; /* استخدام نسبة مئوية مع حد أقصى */
+    max-width: 1280px; /* زيادة الحد الأقصى قليلاً */
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+section {
+    padding: var(--spacing-xl) 0;
+    position: relative; /* للسماح بوضع عناصر مطلقة داخل الأقسام */
+    overflow: hidden; /* منع العناصر المطلقة من الخروج */
+}
+
+/* Grid System - تحسين بسيط */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(-1 * var(--spacing-sm) / 2); /* استخدام المتغير للمسافة */
+}
+
+.col {
+    padding: 0 calc(var(--spacing-sm) / 2); /* استخدام المتغير للمسافة */
+    flex: 1 1 0; /* السماح للعمود بالتقلص والتمدد */
+    min-width: 0; /* لمنع العناصر الداخلية من التسبب في تجاوز العرض */
+}
+
+/* Flexbox Utilities (No changes needed, they are good) */
+.flex { display: flex; }
+.flex-column { flex-direction: column; }
+.justify-center { justify-content: center; }
+.align-center { align-items: center; }
+.space-between { justify-content: space-between; }
+
+/* Buttons */
+.btn {
+    display: inline-flex; /* استخدام inline-flex لمحاذاة الأيقونات */
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs); /* إضافة مسافة للأيقونات */
+    padding: 0.9rem 2rem; /* تعديل الحشو قليلاً */
+    border-radius: var(--border-radius-xl); /* استخدام نصف قطر أكبر للزر */
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    border: none;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    z-index: 1;
+    white-space: nowrap; /* منع التفاف النص في الأزرار */
+}
+
+/* Material Icons in buttons */
+.btn .material-icons {
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.15); /* تقليل شفافية التأثير */
+    transform: scaleX(0); /* تغيير الحركة إلى scale */
+    transform-origin: left;
+    transition: transform var(--transition-normal);
+    z-index: -1;
+}
+
+.btn:hover {
+    transform: translateY(-4px); /* زيادة تأثير الرفع قليلاً */
+    box-shadow: var(--box-shadow-hover);
+}
+
+.btn:hover::before {
+    transform: scaleX(1);
+}
+
+/* إضافة حالة :active للزر */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: var(--box-shadow);
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: var(--dark); /* استخدام اللون الداكن للنص لتحسين التباين */
+    box-shadow: 0 6px 18px rgba(240, 165, 0, 0.3); /* ظل أكثر تحديداً */
+}
+
+.btn-primary:hover {
+    box-shadow: 0 8px 25px rgba(240, 165, 0, 0.4);
+    /* يمكن إضافة تدرج أغمق قليلاً عند المرور إذا رغبت */
+    /* background: linear-gradient(135deg, var(--primary-color-darker), #c87e00); */
+}
+
+.btn-secondary {
+    background: var(--gradient-secondary);
+    color: var(--white);
+    box-shadow: 0 6px 18px rgba(8, 47, 78, 0.3);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 8px 25px rgba(8, 47, 78, 0.4);
+    /* background: linear-gradient(135deg, var(--secondary-color-lighter), #103a5c); */
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--dark);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(240, 165, 0, 0.3);
+}
+
+/* Cards */
+.card {
+    background-color: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    position: relative;
+    border: 1px solid var(--border-color); /* حدود أكثر وضوحاً */
+    display: flex; /* استخدام flex لتحسين التحكم بالمحتوى */
+    flex-direction: column; /* جعل المحتوى يترتب عمودياً */
+    height: 100%; /* جعل البطاقة تملأ المساحة المتاحة في Grid/Flex */
+}
+
+/* إزالة التأثير ::before المعقد قليلاً، يمكن استعادته إذا كان مرغوباً بشدة */
+/* .card::before { ... } */
+
+.card:hover {
+    transform: translateY(-10px); /* زيادة تأثير الرفع */
+    box-shadow: var(--box-shadow-lg); /* استخدام ظل أكبر قليلاً */
+}
+
+.card-image-wrapper { /* إضافة حاوية للصورة للتحكم أفضل */
+    width: 100%;
+    height: 240px; /* ارتفاع ثابت أو aspect-ratio */
+    overflow: hidden; /* قص الصورة الزائدة */
+    position: relative;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ضمان ملء الصورة للمساحة */
+    transition: transform var(--transition-slow), filter var(--transition-normal); /* حركة أبطأ للصورة */
+}
+
+.card:hover .card-image {
+    transform: scale(1.08); /* تكبير أكثر للصورة */
+    filter: brightness(1.05); /* إضافة سطوع طفيف */
+}
+
+.card-content {
+    padding: var(--spacing-md);
+    flex-grow: 1; /* السماح للمحتوى بالتمدد لملء المساحة المتبقية */
+    /* إزالة الخلفية المتدرجة إلا إذا كانت ضرورية لتصميم معين */
+    /* background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,1)); */
+    background-color: var(--white); /* خلفية بيضاء بسيطة */
+}
+
+.card-content h3, 
+.news-content h3,
+.feature-card h3,
+.testimonial-content p,
+.cta-content h2,
+.cta-content p {
+    color: inherit; /* ضمان وراثة اللون من العنصر الأب */
+    text-align: right; /* ضمان محاذاة النص لليمين */
+}
+
+.feature-card p,
+.news-content p,
+.testimonial-content p {
+    color: inherit; /* ضمان وراثة اللون من العنصر الأب */
+    text-align: right; /* ضمان محاذاة النص لليمين */
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+    color: var(--secondary-color); /* لون أكثر بروزاً للعنوان */
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.85rem 1rem; /* تعديل الحشو */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md); /* زيادة تدوير الزوايا */
+    font-family: var(--main-font); /* توحيد الخط */
+    font-size: 1rem;
+    transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+    background-color: var(--white); /* ضمان لون الخلفية */
+    color: var(--text-color); /* ضمان لون النص */
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(240, 165, 0, 0.2); /* ظل عند التركيز */
+}
+
+/* Placeholder styling */
+.form-control::placeholder {
+    color: var(--text-light);
+    opacity: 0.8;
+}
+
+/* Invalid state styling */
+.form-control:invalid {
+    border-color: var(--error-color);
+}
+.form-control:invalid:focus {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+
+textarea.form-control {
+    min-height: 160px; /* زيادة الارتفاع الأدنى */
+    resize: vertical;
+}
+
+/* Header and Navigation - Redesigned */
+.main-header {
+    background: linear-gradient(to left, var(--secondary-color), var(--secondary-color-lighter));
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.8rem 0;
+    transition: all var(--transition-normal);
+    border-bottom: none;
+}
+
+.main-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-normal);
+}
+
+.logo:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    color: var(--white);
+    font-weight: 800;
+    position: relative;
+    transition: color var(--transition-normal);
+    text-align: right;
+    white-space: normal;
+    word-wrap: break-word;
+    padding: 0.3rem 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logo h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 1.5px;
+    transition: width var(--transition-normal), background var(--transition-normal);
+}
+
+.logo:hover h1 {
+    color: var(--primary-color);
+}
+
+.logo:hover h1::after {
+    width: 100%;
+    background: var(--white);
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-lg);
+    padding: 0.5rem;
+}
+
+.main-nav ul li {
+    position: relative;
+}
+
+.main-nav ul li a {
+    color: var(--white);
+    font-weight: 600;
+    padding: 0.7rem 1.2rem;
+    position: relative;
+    transition: all var(--transition-normal);
+    display: inline-block;
+    text-align: center;
+    border-radius: var(--border-radius-md);
+    background-color: transparent;
+    z-index: 1;
+}
+
+/* New hover and active styles */
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    color: var(--secondary-color);
+}
+
+/* Create a background pill effect for hover/active state */
+.main-nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-md);
+    z-index: -1;
+    transform: scale(0.5);
+    opacity: 0;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
+}
+
+.main-nav ul li a:hover::before,
+.main-nav ul li a.active::before {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Remove the underline effect */
+.main-nav ul li a::after {
+    display: none;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 0.5rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle:hover {
+    background-color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+.close-menu-btn {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-md);
+    font-size: 1.6rem;
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    z-index: 1002;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-menu-btn:hover {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    transform: rotate(90deg);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 95vh; /* زيادة الارتفاع قليلاً */
+    background: url('../images/school-bg.jpg') center center/cover no-repeat fixed; /* إضافة fixed لخلفية parallax بسيطة */
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center; /* توسيط المحتوى عمودياً وأفقياً */
+    overflow: hidden;
+    text-align: center; /* توسيط النص بشكل افتراضي */
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0; /* اختصار لـ top, right, bottom, left */
+    /* تدرج أكثر نعومة */
+    background: linear-gradient(135deg, rgba(8, 47, 78, 0.85), rgba(17, 24, 39, 0.8));
+    z-index: 1;
+}
+
+/* تبسيط أو إزالة النقش إذا كان يسبب تشتيتاً */
+/* .hero::before { ... } */
+/* @keyframes backgroundMove { ... } */
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 950px; /* زيادة العرض الأقصى */
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-sm); /* تعديل الحشو */
+    animation: fadeInUp 1s ease-out forwards; /* ضمان بقاء الحالة النهائية */
+}
+
+.hero-title {
+    font-size: 4.2rem; /* زيادة حجم الخط */
+    margin-bottom: var(--spacing-md); /* زيادة الهامش السفلي */
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* ظل أكثر بروزاً */
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    /* تحسين تأثير التدرج اللوني */
+    background: linear-gradient(90deg, var(--white), var(--primary-color), var(--white));
+    background-size: 200% auto; /* للسماح بالحركة */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: var(--white); /* تغيير لضمان ظهور النص حتى إذا لم يدعم المتصفح background-clip */
+    text-align: center; /* توسيط العنوان */
+    display: block; /* تغيير من inline-block إلى block لضمان العرض الكامل */
+    animation: titleGlow 3s ease-in-out infinite alternate, titleGradientMove 8s linear infinite; /* إضافة حركة للتدرج */
+}
+
+/* إضافة قاعدة لدعم المتصفحات التي تدعم background-clip */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+    .hero-title {
+        color: transparent;
+    }
+}
+
+@keyframes titleGlow {
+    from { text-shadow: 0 0 8px rgba(240, 165, 0, 0.4); }
+    to   { text-shadow: 0 0 20px rgba(240, 165, 0, 0.7), 0 0 35px rgba(240, 165, 0, 0.5); }
+}
+
+@keyframes titleGradientMove {
+    to { background-position: 200% center; }
+}
+
+.hero-divider {
+    width: 150px; /* زيادة العرض */
+    height: 5px; /* زيادة السمك */
+    background: var(--gradient-primary);
+    margin: var(--spacing-md) auto; /* استخدام متغير للمسافة */
+    border-radius: 2.5px; /* تدوير الحواف */
+    position: relative;
+    overflow: hidden;
+    /* إزالة التأثير المتحرك ::after إذا كان مبالغاً فيه */
+    /* animation: shine 2s infinite; */
+}
+
+/* .hero-divider::after { ... } */
+/* @keyframes shine { ... } */
+
+
+.hero-description {
+    font-size: 1.4rem; /* زيادة حجم الخط */
+    line-height: 1.9; /* زيادة ارتفاع السطر */
+    margin-bottom: var(--spacing-lg); /* زيادة الهامش السفلي */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* تحسين الظل */
+    /* تحريك النص مع تأخير بسيط */
+    animation: fadeInUp 1.2s ease-out 0.3s forwards;
+    opacity: 0; /* البدء مخفياً */
+    max-width: 750px; /* تحديد عرض أقصى للوصف */
+    margin-left: auto; /* لتوسيطه إذا كان أقل من العرض الأقصى */
+    margin-right: auto;
+    text-align: center; /* توسيط النص */
+    color: var(--white); /* تأكيد لون النص */
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap; /* السماح بالالتفاف في الشاشات الصغيرة */
+    gap: var(--spacing-md); /* زيادة المسافة */
+    justify-content: center;
+    /* تحريك الأزرار مع تأخير */
+    animation: fadeInUp 1.4s ease-out 0.6s forwards;
+    opacity: 0; /* البدء مخفياً */
+}
+
+/* إعادة تعريف الأزرار في الهيرو لجعلها أكبر قليلاً */
+.hero .btn {
+    padding: 1.1rem 2.5rem;
+    font-size: 1.15rem;
+    border-radius: var(--border-radius-xl);
+}
+
+.hero .btn-primary {
+    background: var(--primary-color); /* استخدام اللون الأساسي الصلب */
+    color: var(--dark);
+}
+.hero .btn-primary:hover {
+    background: var(--primary-color-darker);
+}
+
+.hero .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+}
+.hero .btn-secondary:hover {
+    background: var(--white);
+    color: var(--secondary-color);
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Page Banner */
+.page-banner {
+    position: relative;
+    background: url('../images/placeholder.txt') center/cover no-repeat;
+    padding: var(--spacing-xl) 0;
+    color: var(--white);
+    text-align: center;
+    overflow: hidden;
+}
+
+.page-banner-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(8, 47, 78, 0.85), rgba(17, 24, 39, 0.9));
+    z-index: 1;
+}
+
+.page-banner .container {
+    position: relative;
+    z-index: 2;
+}
+
+.page-banner h2 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--white);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 1s ease-out forwards;
+}
+
+.breadcrumb {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-md);
+    font-size: 0.9rem;
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+    opacity: 0;
+}
+
+.breadcrumb a {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.breadcrumb span {
+    color: var(--white);
+    opacity: 0.8;
+}
+
+/* Scroll Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animations for grid items */
+.features-grid .feature-card,
+.news-grid .news-card,
+.values-grid .value-card,
+.facilities-grid .facility-card,
+.contact-info-grid .contact-info-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.features-grid .feature-card.animated,
+.news-grid .news-card.animated,
+.values-grid .value-card.animated,
+.facilities-grid .facility-card.animated,
+.contact-info-grid .contact-info-card.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delay for grid items */
+.features-grid .feature-card:nth-child(1),
+.news-grid .news-card:nth-child(1),
+.values-grid .value-card:nth-child(1),
+.facilities-grid .facility-card:nth-child(1),
+.contact-info-grid .contact-info-card:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.features-grid .feature-card:nth-child(2),
+.news-grid .news-card:nth-child(2),
+.values-grid .value-card:nth-child(2),
+.facilities-grid .facility-card:nth-child(2),
+.contact-info-grid .contact-info-card:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.features-grid .feature-card:nth-child(3),
+.news-grid .news-card:nth-child(3),
+.values-grid .value-card:nth-child(3),
+.facilities-grid .facility-card:nth-child(3),
+.contact-info-grid .contact-info-card:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.features-grid .feature-card:nth-child(4),
+.news-grid .news-card:nth-child(4),
+.values-grid .value-card:nth-child(4),
+.facilities-grid .facility-card:nth-child(4),
+.contact-info-grid .contact-info-card:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+/* إزالة .animate-fade-in و .pulse إذا لم تكن مستخدمة بشكل واسع */
+/* ويمكن استبدالها بـ fadeInUp أو تأثيرات أخرى حسب الحاجة */
+
+/* Features Section */
+.features {
+    background: var(--gradient-bg); /* استخدام تدرج الخلفية المحدد */
+    padding: var(--spacing-xl) 0; /* تعديل الحشو */
+    position: relative;
+    overflow: visible; /* السماح للظلال بالظهور خارج حدود القسم */
+}
+
+/* إزالة ::before إذا كان التأثير غير ضروري */
+/* .features::before { ... } */
+
+.features-grid {
+    display: grid;
+    /* تحسين استجابة الشبكة */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--spacing-lg); /* زيادة المسافة */
+    position: relative;
+    z-index: 2;
+}
+
+.feature-card {
+    background-color: var(--white);
+    padding: var(--spacing-lg); /* زيادة الحشو الداخلي */
+    border-radius: var(--border-radius-xl); /* زيادة تدوير الزوايا */
+    box-shadow: var(--box-shadow);
+    text-align: right; /* تغيير من center إلى right للتوافق مع RTL */
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
+    position: relative;
+    overflow: hidden; /* قص أي تجاوزات */
+    border: none; /* إزالة الحدود الافتراضية */
+    z-index: 1;
+    display: flex; /* استخدام flex لتحسين المحاذاة */
+    flex-direction: column;
+    align-items: flex-start; /* تغيير من center إلى flex-start للتوافق مع RTL */
+}
+
+/* إزالة التأثير ::before وتأثير hover المعقد قليلاً */
+/* .feature-card::before { ... } */
+/* .feature-card:hover::before { ... } */
+
+.feature-card:hover {
+    transform: translateY(-12px) scale(1.02); /* تأثير رفع وتكبير بسيط */
+    box-shadow: var(--box-shadow-lg); /* ظل أكبر */
+    /* تغيير طفيف في الخلفية عند المرور */
+    /* background-color: #fdfdfd; */
+}
+
+.feature-icon {
+    font-size: 3.5rem; /* تكبير الأيقونة */
+    /* استخدام تدرج لوني للأيقونة */
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: var(--primary-color); /* لون احتياطي إذا لم يدعم المتصفح background-clip */
+    margin-bottom: var(--spacing-md);
+    transition: transform var(--transition-normal);
+    display: inline-block;
+    line-height: 1; /* منع تسبب الأيقونة في ارتفاع إضافي */
+    align-self: center; /* توسيط الأيقونة */
+}
+
+/* Material Icons in feature cards */
+.feature-icon .material-icons {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+}
+
+/* إضافة قاعدة لدعم المتصفحات التي تدعم background-clip */
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+    .feature-icon {
+        color: transparent;
+    }
+}
+
+/* إزالة التأثير ::after المعقد على الأيقونة */
+/* .feature-icon::after { ... } */
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.15) rotate(-5deg); /* تأثير حركة أكبر */
+}
+
+.feature-card:hover .feature-icon .material-icons {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+/* .feature-card:hover .feature-icon::after { ... } */
+
+.feature-card h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 1.4rem; /* تعديل حجم الخط */
+    transition: color var(--transition-normal);
+}
+
+.feature-card:hover h3 {
+    color: var(--primary-color-darker); /* تغيير اللون عند المرور */
+}
+
+.feature-card p {
+    color: var(--text-light);
+    line-height: 1.8; /* زيادة ارتفاع السطر */
+    transition: color var(--transition-normal);
+    flex-grow: 1; /* السماح للفقرة بملء المساحة إذا لزم الأمر */
+    margin-bottom: 0; /* إزالة الهامش السفلي من آخر عنصر */
+}
+
+.feature-card:hover p {
+    color: var(--text-color);
+}
+
+/* News and Events Section */
+/* استخدام نفس نمط الخلفية لقسم الميزات أو خلفية أخرى */
+.news-events {
+    background-color: var(--white); /* خلفية بيضاء بسيطة أو var(--light-bg) */
+    padding: var(--spacing-xl) 0;
+    position: relative;
+}
+
+/* Enhanced Floating Icons */
+.floating-icons-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-icon {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.3;
+    animation: floatUp 5s linear forwards;
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.2;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* تبسيط الحاوية إذا لم تعد هناك حاجة للخلفية الشفافة */
+/* .news-events .container { ... } */
+
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); /* تعديل العرض الأدنى */
+    gap: var(--spacing-lg); /* زيادة الفجوة */
+}
+
+/* استخدام نفس نمط .card للتوحيد */
+.news-card {
+    /* وراثة من .card */
+    /* يمكن إضافة تعديلات طفيفة هنا إذا لزم الأمر */
+    /* مثال: تغيير طفيف في الظل أو الحواف */
+    /* border-radius: var(--border-radius-md); */
+}
+
+/* تبسيط تأثيرات المرور والاكتفاء بما هو موجود في .card */
+/* .news-card:hover { ... } */
+
+.news-image { /* يجب أن يكون هذا هو .card-image-wrapper */
+    position: relative;
+    overflow: hidden;
+    height: 220px; /* تحديد ارتفاع ثابت أو استخدام aspect-ratio */
+}
+
+.news-image .card-image { /* الصورة نفسها داخل الغلاف */
+     /* ترث الأنماط من .card-image */
+}
+
+/* إزالة image-overlay لتبسيط التأثير، تكبير الصورة يكفي */
+/* .image-overlay { ... } */
+/* .news-card:hover .image-overlay { ... } */
+
+.news-content { /* يجب أن يكون هذا هو .card-content */
+    padding: var(--spacing-md);
+    /* background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%); */ /* إزالة التدرج */
+}
+
+.news-date {
+    display: block;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-xs);
+    font-size: 0.85rem; /* تصغير طفيف */
+    font-weight: 600; /* زيادة الوزن */
+    text-transform: uppercase; /* جعل التاريخ بأحرف كبيرة */
+    letter-spacing: 0.5px;
+}
+
+.news-content h3 {
+    margin-bottom: var(--spacing-sm); /* زيادة الهامش */
+    font-size: 1.3rem; /* تعديل حجم الخط */
+    line-height: 1.4; /* تعديل ارتفاع السطر */
+}
+.news-content h3 a { /* التأكد من أن الرابط يغطي العنوان */
+    color: inherit; /* يرث لون العنوان */
+    text-decoration: none;
+}
+.news-content h3 a:hover {
+    color: var(--primary-color); /* تغيير لون العنوان عند المرور */
+}
+
+
+.read-more {
+    display: inline-flex; /* استخدام flex لمحاذاة الأيقونة */
+    align-items: center;
+    gap: var(--spacing-xxs);
+    margin-top: var(--spacing-sm); /* زيادة الهامش العلوي */
+    font-weight: 700; /* زيادة الوزن */
+    color: var(--primary-color);
+    transition: color var(--transition-normal), transform var(--transition-normal);
+}
+.read-more::after { /* إضافة سهم بسيط */
+    content: '←'; /* استخدام سهم لليسار (باعتبار الاتجاه RTL) */
+    display: inline-block;
+    margin-right: var(--spacing-xxs);
+    transition: transform var(--transition-normal);
+}
+
+.read-more:hover {
+    color: var(--secondary-color);
+    transform: translateX(-5px); /* تحريك النص قليلاً */
+}
+.read-more:hover::after {
+    transform: translateX(5px); /* تحريك السهم بالاتجاه المعاكس */
+}
+
+.view-all {
+    text-align: center;
+    margin-top: var(--spacing-lg);
+}
+/* استخدام زر بتصميم مختلف قليلاً لـ "عرض الكل" */
+.view-all .btn {
+    padding: 0.8rem 2.5rem;
+    font-size: 1rem;
+}
+
+/* إزالة الأنماط غير المستخدمة أو المكررة */
+/* .pattern-background { ... } */
+/* .animated-background { ... } */
+/* .floating-icons-container { ... } */
+/* .floating-icon { ... } */
+/* @keyframes floatUp { ... } */
+
+
+/* Testimonials Section */
+.testimonials {
+    background-color: var(--secondary-color); /* تغيير الخلفية للون الثانوي */
+    color: var(--white); /* تغيير لون النص للأبيض */
+    padding: var(--spacing-xl) 0;
+}
+
+.testimonials .section-title {
+    color: var(--white); /* تغيير لون عنوان القسم */
+}
+.testimonials .section-title::after {
+    background: var(--gradient-primary); /* التأكد من أن الخط لا يزال ظاهراً */
+}
+
+/* Enhanced Testimonials Slider */
+.testimonials-slider {
+    position: relative;
+    padding: 0 var(--spacing-lg);
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.testimonial {
+    background-color: var(--secondary-color-lighter); /* خلفية أفتح قليلاً */
+    padding: var(--spacing-lg); /* زيادة الحشو */
+    border-radius: var(--border-radius-lg);
+    /* box-shadow: var(--box-shadow); */ /* إزالة الظل لأنه على خلفية داكنة */
+    flex-shrink: 0; /* منع الشرائح من التقلص */
+    width: 100%; /* أو حسب إعدادات السلايدر */
+    max-width: 650px; /* عرض أقصى للشهادة */
+    margin: 0 auto var(--spacing-md); /* توسيط وإضافة هامش سفلي */
+    position: relative;
+    text-align: center; /* توسيط النص */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* حد خفيف */
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.testimonial.active {
+    opacity: 1;
+}
+
+.testimonial::before {
+    content: '\201C';
+    font-size: 5rem; /* تكبير علامة الاقتباس */
+    position: absolute;
+    top: var(--spacing-sm); /* تعديل الموضع */
+    left: 50%;
+    transform: translateX(-50%); /* توسيط علامة الاقتباس */
+    color: var(--primary-color);
+    opacity: 0.3; /* زيادة الشفافية قليلاً */
+    line-height: 1;
+    z-index: 1;
+}
+
+.testimonial-content {
+    margin-top: var(--spacing-lg); /* إضافة مسافة فوق المحتوى بسبب علامة الاقتباس */
+    margin-bottom: var(--spacing-md); /* زيادة الهامش */
+    font-style: italic; /* جعل النص مائلاً */
+    font-size: 1.1rem; /* تعديل حجم الخط */
+    line-height: 1.8;
+    position: relative;
+    z-index: 2; /* للتأكد من أن النص فوق علامة الاقتباس */
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* توسيط المؤلف */
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-author img { /* إضافة صورة للمؤلف */
+    width: 60px;
+    height: 60px;
+    border-radius: var(--border-radius-circle);
+    object-fit: cover;
+    border: 3px solid var(--primary-color); /* إطار للصورة */
+}
+
+.testimonial-author-info h4 {
+    margin-bottom: 0;
+    color: var(--white); /* لون أبيض للاسم */
+    font-size: 1.1rem;
+}
+
+.testimonial-author-info p {
+    color: var(--primary-color); /* لون مميز للمنصب */
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: var(--spacing-md);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+}
+
+.dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    z-index: 3;
+}
+
+.slider-prev {
+    right: 0;
+}
+
+.slider-next {
+    left: 0;
+}
+
+.slider-nav:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Call to Action Section */
+.cta {
+    /* استخدام تدرج لوني بدلاً من صورة أو فوقها */
+    background: var(--gradient-secondary);
+    /* background: linear-gradient(rgba(8, 47, 78, 0.9), rgba(17, 24, 39, 0.9)), url('../images/cta-bg.jpg') center/cover no-repeat; */
+    color: var(--white);
+    text-align: center;
+    padding: var(--spacing-xl) 0; /* زيادة الحشو */
+    position: relative;
+    overflow: hidden;
+}
+
+/* إضافة شكل موجي أو نمط كخلفية */
+.cta::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* ارتفاع النمط */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,192L48,176C96,160,192,128,288,138.7C384,149,480,203,576,208C672,213,768,171,864,138.7C960,107,1056,85,1152,96C1248,107,1344,149,1392,170.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+    opacity: 0.5;
+}
+
+
+.cta-content {
+    max-width: 850px; /* زيادة العرض */
+    margin: 0 auto;
+    position: relative; /* للتأكد من أنه فوق ::before */
+    z-index: 2;
+}
+
+.cta-content h2 {
+    color: var(--white);
+    margin-bottom: var(--spacing-md); /* زيادة الهامش */
+    font-size: 2.5rem; /* تكبير الخط */
+    font-weight: 800; /* زيادة الوزن */
+}
+
+.cta-content p {
+    margin-bottom: var(--spacing-lg); /* زيادة الهامش */
+    font-size: 1.2rem; /* تكبير الخط */
+    opacity: 0.9; /* شفافية طفيفة */
+    line-height: 1.8;
+}
+
+.cta .btn { /* تخصيص الزر في الـ CTA */
+    padding: 1rem 2.8rem;
+    font-size: 1.1rem;
+    background: var(--primary-color); /* لون أساسي واضح */
+    color: var(--dark);
+    box-shadow: 0 8px 25px rgba(240, 165, 0, 0.4);
+}
+.cta .btn:hover {
+    background: var(--white);
+    color: var(--secondary-color);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+
+/* Contact Info Cards */
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.contact-info-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.contact-info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.contact-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-md);
+    color: var(--dark);
+    font-size: 1.8rem;
+    transition: transform var(--transition-normal);
+}
+
+/* Material Icons in contact info cards */
+.contact-icon .material-icons {
+    font-size: 2rem;
+}
+
+.contact-info-card:hover .contact-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.contact-info-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.3rem;
+}
+
+.contact-info-card p {
+    color: var(--text-light);
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.6;
+}
+
+.contact-info-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* FAQ Section */
+.faq-section {
+    background-color: var(--light-bg);
+    padding: var(--spacing-xl) 0;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--white);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--box-shadow);
+    margin-bottom: var(--spacing-md);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.faq-item.active {
+    box-shadow: var(--box-shadow-lg);
+}
+
+.faq-question {
+    padding: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color var(--transition-normal);
+}
+
+.faq-item.active .faq-question {
+    background-color: var(--secondary-color);
+}
+
+.faq-question h3 {
+    margin-bottom: 0;
+    font-size: 1.2rem;
+    transition: color var(--transition-normal);
+}
+
+.faq-item.active .faq-question h3 {
+    color: var(--white);
+}
+
+.faq-toggle {
+    width: 30px;
+    height: 30px;
+    background-color: rgba(240, 165, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    transition: all var(--transition-normal);
+    flex-shrink: 0;
+}
+
+/* Material Icons in FAQ toggles */
+.faq-toggle .material-icons {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.faq-item.active .faq-toggle {
+    background-color: var(--primary-color);
+    color: var(--dark);
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 var(--spacing-md);
+    max-height: 0;
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.faq-item.active .faq-answer {
+    padding: var(--spacing-md);
+    max-height: 500px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Material Icons in mission/vision boxes */
+.icon .material-icons {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--dark);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition-normal);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-color-darker);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--dark);
+    color: rgba(255, 255, 255, 0.8); /* لون نص أفتح قليلاً */
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-md); /* إضافة حشو سفلي */
+    position: relative;
+    overflow: hidden;
+    font-size: 0.95rem; /* تعديل حجم الخط الافتراضي للفوتر */
+}
+
+/* إزالة الخط العلوي ::before إذا لم يكن مرغوباً */
+/* .main-footer::before { ... } */
+
+/* إزالة الموجة SVG إذا كانت مبالغ فيها أو غير متناسقة */
+/* .footer-wave { ... } */
+
+.footer-grid {
+    display: grid;
+    /* تحسين تقسيم الأعمدة */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl); /* زيادة المسافة قبل الخط السفلي */
+    position: relative;
+    z-index: 2;
+}
+
+.footer-title {
+    font-size: 1.4rem; /* تعديل حجم الخط */
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+    padding-bottom: var(--spacing-xs); /* تعديل المسافة */
+    font-weight: 700; /* زيادة الوزن */
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px; /* زيادة العرض */
+    height: 3px; /* زيادة السمك */
+    background: var(--gradient-primary); /* استخدام التدرج */
+    border-radius: 1.5px;
+}
+
+.footer-about h3,
+.footer-links h3,
+.footer-contact h3 {
+    color: var(--primary-color);
+    text-align: right; /* ضمان محاذاة النص لليمين */
+}
+
+.footer-about p,
+.footer-links li a,
+.footer-contact li {
+    color: rgba(255, 255, 255, 0.8); /* لون أفتح للنص */
+    text-align: right; /* ضمان محاذاة النص لليمين */
+}
+
+.footer-about p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+    opacity: 0.9; /* زيادة الوضوح */
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap; /* السماح بالالتفاف */
+    gap: var(--spacing-sm); /* زيادة المسافة */
+}
+
+.social-links a {
+    display: inline-flex; /* استخدام flex */
+    align-items: center;
+    justify-content: center;
+    width: 48px; /* تكبير الأيقونة */
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.08); /* خلفية أغمق قليلاً */
+    border-radius: var(--border-radius-circle);
+    color: var(--white);
+    font-size: 1.3rem; /* تكبير حجم الأيقونة الداخلية */
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* استبدال ::before بتأثير تغيير الخلفية واللون */
+.social-links a:hover {
+    background-color: var(--primary-color); /* تغيير الخلفية */
+    color: var(--dark); /* تغيير لون الأيقونة */
+    transform: translateY(-5px) scale(1.05); /* تأثير رفع وتكبير */
+    box-shadow: 0 6px 15px rgba(240, 165, 0, 0.3);
+}
+
+
+.footer-links ul,
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* إزالة الهوامش الافتراضية */
+}
+
+.footer-links ul li,
+.footer-contact ul li {
+    margin-bottom: var(--spacing-sm); /* زيادة المسافة */
+    transition: transform var(--transition-fast); /* حركة أسرع للروابط */
+}
+
+/* إزالة تأثير transform translateX */
+/* .footer-links ul li:hover, */
+/* .footer-contact ul li:hover { ... } */
+
+.footer-links ul li a {
+    color: rgba(255, 255, 255, 0.8); /* لون أفتح */
+    transition: color var(--transition-normal), padding-right var(--transition-normal);
+    display: inline-flex; /* استخدام flex */
+    align-items: center;
+    gap: var(--spacing-xxs); /* مسافة بين الأيقونة والنص */
+    position: relative;
+}
+/* إضافة أيقونة بسيطة قبل الرابط */
+.footer-links ul li a::before {
+    content: '›'; /* أو أي أيقونة أخرى مناسبة */
+    display: inline-block;
+    margin-left: var(--spacing-xxs); /* استخدام margin-left في RTL */
+    font-weight: bold;
+    transition: transform var(--transition-normal);
+    opacity: 0.6;
+}
+
+
+.footer-links ul li a:hover {
+    color: var(--primary-color); /* تغيير اللون */
+    padding-right: 0; /* إزالة الحشو الإضافي عند المرور */
+}
+.footer-links ul li a:hover::before {
+    transform: translateX(-4px); /* تحريك الأيقونة قليلاً */
+    opacity: 1;
+}
+/* إزالة السهم ::after */
+/* .footer-links ul li a::after { ... } */
+/* .footer-links ul li a:hover::after { ... } */
+
+
+.footer-contact ul li {
+    display: flex;
+    align-items: flex-start; /* محاذاة للأعلى إذا كان النص متعدد الأسطر */
+    gap: var(--spacing-sm); /* زيادة المسافة */
+}
+
+.footer-contact ul li i {
+    /* margin-left: var(--spacing-sm); */ /* إزالة الهامش واستخدام gap */
+    color: var(--primary-color);
+    font-size: 1.3rem; /* تكبير الأيقونة */
+    margin-top: 0.2em; /* محاذاة رأسية أفضل للأيقونة */
+    transition: transform var(--transition-normal);
+    flex-shrink: 0; /* منع الأيقونة من التقلص */
+}
+
+.footer-contact ul li .material-icons {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-top: 0.2em;
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
+}
+
+.footer-contact ul li:hover i {
+    transform: scale(1.15); /* تكبير الأيقونة عند المرور على العنصر li */
+}
+
+.footer-contact ul li:hover .material-icons {
+    transform: scale(1.15);
+}
+
+.footer-contact ul li span { /* لف النص في span لتحسين التحكم */
+    line-height: 1.7;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15); /* حد أكثر وضوحاً */
+    padding: var(--spacing-md) 0;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin-top: var(--spacing-lg); /* إضافة مسافة فوق الخط */
+}
+
+.footer-bottom p {
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.7); /* لون أفتح للحقوق */
+    font-size: 0.9rem; /* تصغير الخط قليلاً */
+    transition: color var(--transition-normal);
+    opacity: 0.8;
+    transition: all var(--transition-normal);
+    text-align: center; /* توسيط النص */
+}
+
+.footer-bottom p a { /* تنسيق الروابط داخل الحقوق */
+    color: var(--primary-color);
+    font-weight: normal; /* جعلها بنفس وزن النص المحيط */
+}
+.footer-bottom p a:hover {
+    color: var(--white);
+}
+
+.footer-bottom p:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    html { font-size: 15.5px; } /* تعديل طفيف */
+    h1 { font-size: 2.6rem; }
+    h2 { font-size: 2rem; }
+    .hero-title { font-size: 3.8rem; }
+    .container { width: 94%; }
+    .hero-content h2 { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.4rem; }
+    section { padding: var(--spacing-lg) 0; } /* تقليل الحشو في الأقسام */
+
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: linear-gradient(135deg, var(--secondary-color), var(--secondary-color-lighter));
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        transition: right var(--transition-normal);
+        z-index: 1001;
+        padding: var(--spacing-xl) var(--spacing-md) var(--spacing-md);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-nav.active {
+        right: 0;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: var(--spacing-lg);
+        gap: var(--spacing-xs);
+        background: transparent;
+        padding: 0;
+    }
+
+    .main-nav ul li {
+        margin-left: 0;
+        margin-bottom: var(--spacing-xs);
+        width: 100%;
+    }
+
+    .main-nav ul li a {
+        color: var(--white);
+        padding: var(--spacing-sm) var(--spacing-md);
+        display: block;
+        width: 100%;
+        font-size: 1.1rem;
+        text-align: right;
+        border-radius: var(--border-radius-md);
+        background-color: transparent;
+    }
+
+    .main-nav ul li a:hover::before,
+    .main-nav ul li a.active::before {
+        background-color: var(--primary-color);
+        opacity: 0.2;
+    }
+
+    .main-nav ul li a:hover,
+    .main-nav ul li a.active {
+        color: var(--primary-color);
+    }
+    
+    /* Add a logo/brand to the mobile menu */
+    .main-nav::before {
+        content: 'مدرسة النصر';
+        display: block;
+        color: var(--white);
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: var(--spacing-md);
+        padding-bottom: var(--spacing-sm);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .logo {
+        background: transparent;
+        padding: 0;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+        max-width: 180px;
+    }
+
+    .hero { min-height: 80vh; }
+    .hero-title { 
+        font-size: 3rem;
+        word-wrap: break-word; /* السماح بكسر الكلمات الطويلة */
+    }
+    .hero-description { font-size: 1.2rem; }
+    .hero-buttons { gap: var(--spacing-sm); }
+    .hero .btn { padding: 0.9rem 2rem; font-size: 1rem; }
+
+    .features-grid,
+    .news-grid {
+         gap: var(--spacing-md); /* تقليل الفجوة */
+    }
+
+    .testimonials-slider { /* تعديل ليتناسب مع السلايدر */
+        /* قد تحتاج إلى تعديلات بناءً على مكتبة السلايدر المستخدمة */
+    }
+    .testimonial { padding: var(--spacing-md); }
+    .testimonial::before { font-size: 4rem; }
+    .testimonial-content { font-size: 1rem; }
+
+    .cta-content h2 { font-size: 2rem; }
+    .cta-content p { font-size: 1.1rem; }
+
+    .footer-grid { gap: var(--spacing-md); } /* تقليل الفجوة */
+    
+    .hero-content { padding: var(--spacing-lg) 0; }
+    .hero-content h2 { font-size: 1.8rem; }
+}
+
+@media (max-width: 576px) {
+    html { font-size: 14.5px; }
+    .container { width: 90%; padding: 0 var(--spacing-xs); }
+
+    .logo h1 {
+        font-size: 1.1rem;
+        max-width: 150px;
+    }
+    
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+    }
+
+    .hero { min-height: 70vh; }
+    .hero-title { 
+        font-size: 2.2rem; /* تصغير إضافي للشاشات الصغيرة جداً */
+    }
+    .hero-description { font-size: 1.1rem; }
+    .hero-buttons { flex-direction: column; gap: var(--spacing-sm); }
+    .hero .btn { width: 100%; max-width: 300px; margin: 0 auto; } /* جعل الزر يأخذ عرض معين ويتوسط */
+
+    .btn {
+        /* تقليل حجم الأزرار قليلاً في الشاشات الصغيرة جداً */
+        padding: 0.8rem 1.6rem;
+        font-size: 0.95rem;
+        display: block;
+        width: 100%;
+        margin-bottom: var(--spacing-xs);
+    }
+    .hero .btn { /* إعادة تطبيق حجم أزرار الهيرو */
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+        margin: 0 0 var(--spacing-xs) 0;
+    }
+
+
+    .card-content, .news-content { padding: var(--spacing-sm); } /* تقليل الحشو في البطاقات */
+    .feature-card { padding: var(--spacing-md); }
+
+    .footer-grid { grid-template-columns: 1fr; /* عمود واحد فقط */ }
+    .footer-about, .footer-links, .footer-contact {
+        text-align: center; /* توسيط المحتوى في الفوتر */
+    }
+    .footer-title { display: block; } /* جعل العنوان كتلة لتوسيط الخط السفلي */
+    .footer-title::after { left: 50%; transform: translateX(-50%); }
+    .social-links { justify-content: center; } /* توسيط أيقونات التواصل */
+    .footer-links ul, .footer-contact ul { align-items: center; }
+    .footer-contact ul li { justify-content: center; text-align: right; /* محاذاة النص لليمين بجانب الأيقونة في RTL */ }
+    .footer-contact ul li i { margin-top: 0.1em; } /* ضبط محاذاة الأيقونة */
+    .footer-bottom p { font-size: 0.85rem; }
+    
+    section { padding: var(--spacing-lg) 0; }
+}

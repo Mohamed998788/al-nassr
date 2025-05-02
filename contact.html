@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="اتصل بنا - مدرسة النصر الاعدادية المشتركة ك15">
+    <title>اتصل بنا | مدرسة النصر الاعدادية المشتركة ك15</title>
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Load Cairo font with display=swap for better text visibility during loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap&text=ابتثجحخدذرزسشصضطظعغفقكلمنهويءؤةئ٠١٢٣٤٥٦٧٨٩&subset=arabic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+        <div style="background-color: #f44336; color: white; text-align: center; padding: 10px; direction: rtl;">
+            يرجى تفعيل جافا سكريبت للحصول على أفضل تجربة لموقعنا
+        </div>
+    </noscript>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>مدرسة النصر الاعدادية المشتركة ك15</h1>
+            </div>
+            <nav class="main-nav" aria-label="القائمة الرئيسية">
+                <button class="close-menu-btn" aria-label="إغلاق القائمة"><i class="fas fa-times"></i></button>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">عن المدرسة</a></li>
+                    <li><a href="contact.html" class="active" aria-current="page">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="فتح القائمة" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="page-banner-overlay"></div>
+        <div class="container">
+            <h2>اتصل بنا</h2>
+            <nav class="breadcrumb">
+                <a href="index.html">الرئيسية</a> / <span>اتصل بنا</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="contact-info-grid">
+                <div class="contact-info-card animate-on-scroll">
+                    <div class="contact-icon">
+                        <i class="material-icons">location_on</i>
+                    </div>
+                    <h3>العنوان</h3>
+                    <p>شارع المدارس، حي النهضة، المدينة</p>
+                </div>
+                <div class="contact-info-card animate-on-scroll">
+                    <div class="contact-icon">
+                        <i class="material-icons">schedule</i>
+                    </div>
+                    <h3>ساعات العمل</h3>
+                    <p>الأحد - الخميس: 7:30 صباحاً - 3:30 مساءً</p>
+                    <p>السبت: 9:00 صباحاً - 1:00 ظهراً</p>
+                </div>
+                <div class="contact-info-card animate-on-scroll">
+                    <div class="contact-icon">
+                        <i class="material-icons">person_add</i>
+                    </div>
+                    <h3>التسجيل</h3>
+                    <p>التسجيل متاح فقط من خلال زيارة المدرسة شخصياً</p>
+                    <p>قسم التسجيل: الطابق الأرضي، مبنى الإدارة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form and Map Section -->
+    <section class="contact-form-map">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="contact-form-container">
+                        <h2>تواصل معنا</h2>
+                        <p>يمكنك التواصل معنا من خلال ملء النموذج التالي، وسنقوم بالرد عليك في أقرب وقت ممكن.</p>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="name" class="form-label">الاسم الكامل</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">البريد الإلكتروني</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">رقم الهاتف</label>
+                                <input type="tel" id="phone" name="phone" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="form-label">الموضوع</label>
+                                <input type="text" id="subject" name="subject" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-label">الرسالة</label>
+                                <textarea id="message" name="message" class="form-control" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary"><i class="material-icons">send</i> إرسال</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="map-container">
+                        <h2>موقعنا</h2>
+                        <div class="map">
+                            <!-- Replace with actual Google Maps embed code -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.789012345678!2d35.12345678901234!3d31.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDA3JzI0LjQiTiAzNcKwMDcnMjQuNCJF!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>كيف يمكنني تسجيل ابني/ابنتي في المدرسة؟</h3>
+                        <span class="faq-toggle"><i class="material-icons">add</i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يمكنك تسجيل ابنك/ابنتك في المدرسة من خلال زيارة قسم التسجيل في المدرسة وتقديم المستندات المطلوبة. يرجى الحضور شخصياً خلال ساعات العمل الرسمية، حيث أن التسجيل متاح فقط من خلال الزيارة الشخصية للمدرسة.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>ما هي المستندات المطلوبة للتسجيل؟</h3>
+                        <span class="faq-toggle"><i class="material-icons">add</i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>المستندات المطلوبة للتسجيل تشمل: شهادة الميلاد، صورة عن بطاقة الهوية للوالدين، صور شخصية حديثة للطالب، الشهادات الدراسية السابقة، وتقرير طبي حديث.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل توفر المدرسة خدمة النقل؟</h3>
+                        <span class="faq-toggle"><i class="material-icons">add</i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، توفر المدرسة خدمة النقل للطلاب من وإلى المدرسة بحافلات مجهزة ومكيفة، مع مشرفين مؤهلين لضمان سلامة الطلاب.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>ما هي الرسوم الدراسية؟</h3>
+                        <span class="faq-toggle"><i class="material-icons">add</i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تختلف الرسوم الدراسية حسب المرحلة الدراسية. يمكنك الاتصال بقسم التسجيل للحصول على معلومات مفصلة عن الرسوم الدراسية للعام الدراسي الحالي.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>هل تقدم المدرسة منحاً دراسية؟</h3>
+                        <span class="faq-toggle"><i class="material-icons">add</i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، تقدم المدرسة منحاً دراسية للطلاب المتفوقين أكاديمياً والطلاب الموهوبين في المجالات الرياضية والفنية. يمكنك التواصل مع إدارة المدرسة للحصول على مزيد من المعلومات.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>مدرسة النصر الاعدادية</h3>
+                    <p>مؤسسة تعليمية رائدة تسعى لتقديم تعليم متميز وبناء جيل واعٍ قادر على مواجهة تحديات المستقبل.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">عن المدرسة</a></li>
+                        <li><a href="academics.html">البرامج الأكاديمية</a></li>
+                        <li><a href="teachers.html">المعلمون</a></li>
+                        <li><a href="activities.html">الأنشطة</a></li>
+                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>اتصل بنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> شارع المدارس، المدينة</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 مدرسة النصر الاعدادية المشتركة ك15. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script>
+        // Ensure text is visible even if animations fail
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('page-loaded');
+            
+            // Force visibility of important text elements after a short delay
+            setTimeout(function() {
+                document.querySelectorAll('h1, h2, h3, p, .section-title, label, .form-control').forEach(function(el) {
+                    el.style.opacity = '1';
+                    el.style.visibility = 'visible';
+                });
+            }, 500);
+            
+            // FAQ Toggle
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const toggle = item.querySelector('.faq-toggle');
+                
+                question.addEventListener('click', () => {
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').style.display = 'none';
+                            otherItem.querySelector('.faq-toggle i').className = 'material-icons';
+                            otherItem.querySelector('.faq-toggle i').textContent = 'add';
+                        }
+                    });
+                    
+                    item.classList.toggle('active');
+                    
+                    if (item.classList.contains('active')) {
+                        answer.style.display = 'block';
+                        toggle.querySelector('i').className = 'material-icons';
+                        toggle.querySelector('i').textContent = 'remove';
+                    } else {
+                        answer.style.display = 'none';
+                        toggle.querySelector('i').className = 'material-icons';
+                        toggle.querySelector('i').textContent = 'add';
+                    }
+                });
+            });
+            
+            // Hide all answers initially
+            faqItems.forEach(item => {
+                item.querySelector('.faq-answer').style.display = 'none';
+            });
+            
+            // Form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Here you would normally send the form data to a server
+                    alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

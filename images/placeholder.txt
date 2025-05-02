@@ -1,0 +1,13 @@
+This is a placeholder file for the images directory.
+
+In a real implementation, this directory would contain image files such as:
+- hero-bg.jpg (for the hero section background)
+- about-school.jpg (for the about page)
+- news1.jpg, news2.jpg, news3.jpg (for news items)
+- classroom.jpg, lab.jpg, library.jpg, etc. (for facilities)
+- principal.jpg, vice-principal.jpg, etc. (for administration)
+- teacher profile images
+- activity images
+- gallery images
+
+These images would need to be added to complete the website.
