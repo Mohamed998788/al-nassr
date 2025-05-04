@@ -1,0 +1,2503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="أخبار مدرسة النصر الاعدادية المشتركة ك15">
+    <title>الأخبار | مدرسة النصر الاعدادية المشتركة ك15</title>
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Load Cairo font with display=swap for better text visibility during loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap&text=ابتثجحخدذرزسشصضطظعغفقكلمنهويءؤةئ٠١٢٣٤٥٦٧٨٩&subset=arabic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper JS for carousel -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- AOS library for scroll animations -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* News Page Specific Styles */
+        .news-section {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+            position: relative;
+        }
+        
+        /* Featured News Slider */
+        .featured-news-slider {
+            margin-bottom: 60px;
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .swiper-container {
+            width: 100%;
+            height: 500px;
+        }
+        
+        .swiper-slide {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-news-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .featured-news-content {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .swiper-slide:hover .featured-news-image {
+            transform: scale(1.05);
+        }
+        
+        .featured-news-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .featured-news-excerpt {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .featured-news-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .featured-news-date, .featured-news-category {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .featured-news-date i, .featured-news-category i {
+            margin-left: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .featured-news-category {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        
+        .featured-news-link {
+            display: inline-flex;
+            align-items: center;
+            color: white;
+            background-color: #0056b3;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .featured-news-link i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .featured-news-link:hover {
+            background-color: #003d7a;
+        }
+        
+        .featured-news-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            opacity: 0.7;
+        }
+        
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background-color: #0056b3;
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: white;
+            background-color: rgba(0, 0, 0, 0.3);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-button-next:hover, .swiper-button-prev:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 1.5rem;
+        }
+        
+        /* Search and Filter Section */
+        .news-search-filter {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+        
+        .news-search {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .news-search input {
+            width: 100%;
+            padding: 15px 20px;
+            padding-right: 50px;
+            border: 2px solid #eee;
+            border-radius: 30px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .news-search input:focus {
+            border-color: #0056b3;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+        
+        .news-search button {
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .news-search button:hover {
+            background-color: #003d7a;
+        }
+        
+        .advanced-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .filter-group select, .filter-group input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-group select:focus, .filter-group input:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+        
+        .filter-toggle {
+            background: none;
+            border: none;
+            color: #0056b3;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .filter-toggle i {
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .filter-toggle.active i {
+            transform: rotate(180deg);
+        }
+        
+        /* News Filters */
+        .news-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 12px 25px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: #0056b3;
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+        
+        .filter-btn:hover::before {
+            width: 100%;
+        }
+        
+        .filter-btn:hover {
+            color: white;
+        }
+        
+        .filter-btn.active {
+            background-color: #0056b3;
+            color: white;
+        }
+        
+        .filter-btn.active::before {
+            width: 100%;
+        }
+        
+        /* News Grid Layout */
+        .news-container {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .news-main {
+            flex: 1;
+        }
+        
+        .news-sidebar {
+            width: 350px;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+        
+        .news-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #0056b3;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .news-date i {
+            margin-left: 5px;
+        }
+        
+        .news-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .news-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #0056b3;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        
+        .news-excerpt {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .news-category {
+            background-color: rgba(0, 86, 179, 0.1);
+            color: #0056b3;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .news-category:hover {
+            background-color: rgba(0, 86, 179, 0.2);
+        }
+        
+        .news-link {
+            color: #0056b3;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .news-link i {
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-link:hover {
+            color: #003d7a;
+        }
+        
+        .news-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Social Share */
+        .news-social {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 2;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover .news-social {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .social-share-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .share-facebook {
+            background-color: #3b5998;
+        }
+        
+        .share-twitter {
+            background-color: #1da1f2;
+        }
+        
+        .share-whatsapp {
+            background-color: #25d366;
+        }
+        
+        .social-share-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Load More Button */
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .load-more-btn {
+            background-color: transparent;
+            color: #0056b3;
+            border: 2px solid #0056b3;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .load-more-btn i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .load-more-btn:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        
+        .load-more-btn:hover i {
+            transform: translateY(-3px);
+        }
+        
+        /* Sidebar Styles */
+        .sidebar-widget {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .widget-title {
+            font-size: 1.3rem;
+            color: #0056b3;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 86, 179, 0.1);
+            position: relative;
+        }
+        
+        .widget-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 60px;
+            height: 2px;
+            background-color: #0056b3;
+        }
+        
+        /* Trending News Widget */
+        .trending-news-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .trending-news-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .trending-news-item:first-child {
+            padding-top: 0;
+        }
+        
+        .trending-news-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        
+        .trending-news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .trending-news-item:hover .trending-news-image img {
+            transform: scale(1.1);
+        }
+        
+        .trending-news-content {
+            flex: 1;
+        }
+        
+        .trending-news-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .trending-news-title a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .trending-news-title a:hover {
+            color: #0056b3;
+        }
+        
+        .trending-news-date {
+            font-size: 0.85rem;
+            color: #777;
+            display: flex;
+            align-items: center;
+        }
+        
+        .trending-news-date i {
+            margin-left: 5px;
+            font-size: 0.9rem;
+        }
+        
+        /* Tags Widget */
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tag-item {
+            background-color: #f0f0f0;
+            color: #555;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .tag-item:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        
+        /* Subscribe Widget */
+        .subscribe-form {
+            margin-top: 20px;
+        }
+        
+        .subscribe-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-input:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+        
+        .subscribe-btn {
+            width: 100%;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .subscribe-btn:hover {
+            background-color: #003d7a;
+        }
+        
+        /* News Detail Modal */
+        .news-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .news-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            position: relative;
+            height: 300px;
+        }
+        
+        .modal-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .modal-close:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 30px;
+            max-height: calc(90vh - 300px);
+            overflow-y: auto;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+        
+        .modal-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            color: #777;
+        }
+        
+        .modal-date, .modal-category {
+            display: flex;
+            align-items: center;
+        }
+        
+        .modal-date i, .modal-category i {
+            margin-left: 5px;
+        }
+        
+        .modal-content p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .modal-share {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .modal-share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-share-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #0056b3;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #003d7a;
+            transform: translateY(-5px);
+        }
+        
+        /* Skeleton Loading */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 4px;
+        }
+        
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+        
+        .skeleton-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .skeleton-image {
+            height: 220px;
+            width: 100%;
+        }
+        
+        .skeleton-content {
+            padding: 25px;
+        }
+        
+        .skeleton-title {
+            height: 28px;
+            margin-bottom: 15px;
+            width: 90%;
+        }
+        
+        .skeleton-text {
+            height: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .skeleton-text:last-child {
+            width: 80%;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .news-container {
+                flex-direction: column;
+            }
+            
+            .news-sidebar {
+                width: 100%;
+            }
+            
+            .swiper-container {
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .featured-news-title {
+                font-size: 1.8rem;
+            }
+            
+            .swiper-container {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .featured-news-title {
+                font-size: 1.5rem;
+            }
+            
+            .featured-news-excerpt {
+                font-size: 1rem;
+            }
+            
+            .swiper-container {
+                height: 300px;
+            }
+            
+            .advanced-filters {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .swiper-container {
+                height: 250px;
+            }
+            
+            .featured-news-content {
+                padding: 20px;
+            }
+            
+            .featured-news-title {
+                font-size: 1.3rem;
+                margin-bottom: 10px;
+            }
+            
+            .featured-news-excerpt {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+            
+            .featured-news-meta {
+                margin-bottom: 10px;
+            }
+            
+            .featured-news-link {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .modal-header {
+                height: 200px;
+            }
+            
+            .modal-body {
+                max-height: calc(90vh - 200px);
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+        <div style="background-color: #f44336; color: white; text-align: center; padding: 10px; direction: rtl;">
+            يرجى تفعيل جافا سكريبت للحصول على أفضل تجربة لموقعنا
+        </div>
+    </noscript>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>مدرسة النصر الاعدادية المشتركة ك15</h1>
+            </div>
+            <nav class="main-nav" aria-label="القائمة الرئيسية">
+                <button class="close-menu-btn" aria-label="إغلاق القائمة"><i class="fas fa-times"></i></button>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">عن المدرسة</a></li>
+                    <li><a href="news.html" class="active" aria-current="page">الأخبار</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="فتح القائمة" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="page-banner-overlay"></div>
+        <div class="container">
+            <h2>أخبار المدرسة</h2>
+            <nav class="breadcrumb">
+                <a href="index.html">الرئيسية</a> / <span>الأخبار</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news-section">
+        <div class="container">
+            <!-- Featured News Slider -->
+            <div class="featured-news-slider" data-aos="fade-up">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Featured News Item 1 -->
+                        <div class="swiper-slide">
+                            <img src="https://via.placeholder.com/1200x600" alt="صورة الخبر المميز" class="featured-news-image">
+                            <div class="featured-news-content">
+                                <div class="featured-news-meta">
+                                    <div class="featured-news-date">
+                                        <i class="material-icons">event</i>
+                                        15 مايو 2024
+                                    </div>
+                                    <div class="featured-news-category">
+                                        <i class="material-icons">category</i>
+                                        فعاليات
+                                    </div>
+                                </div>
+                                <h2 class="featured-news-title">افتتاح المعرض العلمي السنوي بمشاركة واسعة من الطلاب</h2>
+                                <p class="featured-news-excerpt">شهدت المدرسة افتتاح المعرض العلمي السنوي بمشاركة أكثر من 200 طالب وطالبة، وبحضور مسؤولين من وزارة التربية والتعليم ومديرية التربية بالإسماعيلية.</p>
+                                <a href="#" class="featured-news-link" onclick="openNewsModal(1)">
+                                    <i class="material-icons">visibility</i>
+                                    اقرأ المزيد
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Featured News Item 2 -->
+                        <div class="swiper-slide">
+                            <img src="https://via.placeholder.com/1200x600" alt="صورة الخبر المميز" class="featured-news-image">
+                            <div class="featured-news-content">
+                                <div class="featured-news-meta">
+                                    <div class="featured-news-date">
+                                        <i class="material-icons">event</i>
+                                        10 مايو 2024
+                                    </div>
+                                    <div class="featured-news-category">
+                                        <i class="material-icons">category</i>
+                                        أخبار أكاديمية
+                                    </div>
+                                </div>
+                                <h2 class="featured-news-title">تكريم الطلاب المتفوقين في مسابقة الرياضيات على مستوى المحافظة</h2>
+                                <p class="featured-news-excerpt">حصل طلاب مدرسة النصر على المراكز الأولى في مسابقة الرياضيات على مستوى محافظة الإسماعيلية، وتم تكريمهم في حفل أقيم بمديرية التربية والتعليم.</p>
+                                <a href="#" class="featured-news-link" onclick="openNewsModal(2)">
+                                    <i class="material-icons">visibility</i>
+                                    اقرأ المزيد
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Featured News Item 3 -->
+                        <div class="swiper-slide">
+                            <img src="https://via.placeholder.com/1200x600" alt="صورة الخبر المميز" class="featured-news-image">
+                            <div class="featured-news-content">
+                                <div class="featured-news-meta">
+                                    <div class="featured-news-date">
+                                        <i class="material-icons">event</i>
+                                        5 مايو 2024
+                                    </div>
+                                    <div class="featured-news-category">
+                                        <i class="material-icons">category</i>
+                                        أنشطة طلابية
+                                    </div>
+                                </div>
+                                <h2 class="featured-news-title">انطلاق فعاليات الأسبوع الثقافي بمشاركة جميع الفصول الدراسية</h2>
+                                <p class="featured-news-excerpt">بدأت فعاليات الأسبوع الثقافي في المدرسة بمشاركة جميع الفصول الدراسية، وتتضمن الفعاليات مسابقات ثقافية وفنية ورياضية متنوعة.</p>
+                                <a href="#" class="featured-news-link" onclick="openNewsModal(3)">
+                                    <i class="material-icons">visibility</i>
+                                    اقرأ المزيد
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slider Navigation and Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <h2 class="section-title" data-aos="fade-up">آخر الأخبار والفعاليات</h2>
+            <p class="section-description" data-aos="fade-up">تابع آخر أخبار وفعاليات مدرسة النصر الاعدادية المشتركة ك15</p>
+            
+            <!-- Search and Filter Section -->
+            <div class="news-search-filter" data-aos="fade-up">
+                <div class="news-search">
+                    <input type="text" id="newsSearch" placeholder="ابحث في الأخبار..." aria-label="ابحث في الأخبار">
+                    <button type="button" aria-label="بحث">
+                        <i class="material-icons">search</i>
+                    </button>
+                </div>
+                
+                <button class="filter-toggle" id="advancedFilterToggle">
+                    <i class="material-icons">tune</i>
+                    خيارات البحث المتقدمة
+                </button>
+                
+                <div class="advanced-filters" id="advancedFilters" style="display: none;">
+                    <div class="filter-group">
+                        <label for="dateFrom">من تاريخ</label>
+                        <input type="date" id="dateFrom">
+                    </div>
+                    <div class="filter-group">
+                        <label for="dateTo">إلى تاريخ</label>
+                        <input type="date" id="dateTo">
+                    </div>
+                    <div class="filter-group">
+                        <label for="categoryFilter">التصنيف</label>
+                        <select id="categoryFilter">
+                            <option value="">جميع التصنيفات</option>
+                            <option value="academic">أخبار أكاديمية</option>
+                            <option value="activities">أنشطة طلابية</option>
+                            <option value="events">فعاليات</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortBy">ترتيب حسب</label>
+                        <select id="sortBy">
+                            <option value="newest">الأحدث أولاً</option>
+                            <option value="oldest">الأقدم أولاً</option>
+                            <option value="title">العنوان (أ-ي)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Filters -->
+            <div class="news-filters" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">جميع الأخبار</button>
+                <button class="filter-btn" data-filter="academic">أخبار أكاديمية</button>
+                <button class="filter-btn" data-filter="activities">أنشطة طلابية</button>
+                <button class="filter-btn" data-filter="events">فعاليات</button>
+                <button class="filter-btn" data-filter="announcements">إعلانات</button>
+            </div>
+            <!-- News Container with Main Content and Sidebar -->
+            <div class="news-container">
+                <!-- Main News Content -->
+                <div class="news-main">
+                    <!-- News Grid -->
+                    <div class="news-grid" id="newsGrid">
+                        <!-- News Item 1 -->
+                        <div class="news-card" data-category="academic" data-aos="fade-up">
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    15 سبتمبر 2023
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">نتائج امتحانات الفصل الدراسي الأول</h3>
+                                <p class="news-excerpt">تم إعلان نتائج امتحانات الفصل الدراسي الأول للعام الدراسي 2023/2024، وقد حقق طلاب المدرسة نسب نجاح متميزة في مختلف المواد الدراسية.</p>
+                                <div class="news-footer">
+                                    <span class="news-category">أخبار أكاديمية</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal(4)">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- News Item 2 -->
+                        <div class="news-card" data-category="activities" data-aos="fade-up" data-aos-delay="100">
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    10 أكتوبر 2023
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">مسابقة الإبداع العلمي للمرحلة الإعدادية</h3>
+                                <p class="news-excerpt">نظمت المدرسة مسابقة الإبداع العلمي للمرحلة الإعدادية، وقد شارك فيها العديد من الطلاب بمشاريع علمية مبتكرة، وتم تكريم الفائزين في حفل خاص.</p>
+                                <div class="news-footer">
+                                    <span class="news-category">أنشطة طلابية</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal(5)">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- News Item 3 -->
+                        <div class="news-card" data-category="events" data-aos="fade-up" data-aos-delay="200">
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    5 نوفمبر 2023
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">اليوم المفتوح لأولياء الأمور</h3>
+                                <p class="news-excerpt">نظمت المدرسة اليوم المفتوح لأولياء الأمور، حيث تم عرض أنشطة الطلاب ومشاريعهم، وعقد لقاءات مع المعلمين لمناقشة مستوى الطلاب وسبل تطويرهم.</p>
+                                <div class="news-footer">
+                                    <span class="news-category">فعاليات</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal(6)">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- News Item 4 -->
+                        <div class="news-card" data-category="academic" data-aos="fade-up">
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    20 نوفمبر 2023
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">ورشة عمل تدريبية للمعلمين</h3>
+                                <p class="news-excerpt">أقامت المدرسة ورشة عمل تدريبية للمعلمين حول استخدام التكنولوجيا في التعليم، بهدف تطوير مهارات المعلمين وتحسين جودة العملية التعليمية.</p>
+                                <div class="news-footer">
+                                    <span class="news-category">أخبار أكاديمية</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal(7)">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- News Item 5 -->
+                        <div class="news-card" data-category="activities" data-aos="fade-up" data-aos-delay="100">
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    3 ديسمبر 2023
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">المسابقة الرياضية بين فصول المدرسة</h3>
+                                <p class="news-excerpt">نظمت المدرسة مسابقة رياضية بين فصول المدرسة في كرة القدم وكرة السلة، وقد شارك فيها جميع الفصول بحماس كبير، وتم تكريم الفرق الفائزة.</p>
+                                <div class="news-footer">
+                                    <span class="news-category">أنشطة طلابية</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal(8)">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- News Item 6 -->
+                        <div class="news-card" data-category="events" data-aos="fade-up" data-aos-delay="200">
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    15 ديسمبر 2023
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">حفل تكريم الطلاب المتفوقين</h3>
+                                <p class="news-excerpt">أقامت المدرسة حفلاً لتكريم الطلاب المتفوقين في الفصل الدراسي الأول، بحضور أولياء الأمور وممثلين عن إدارة التعليم بالمحافظة.</p>
+                                <div class="news-footer">
+                                    <span class="news-category">فعاليات</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal(9)">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- News Item 7 (Announcement) -->
+                        <div class="news-card" data-category="announcements" data-aos="fade-up">
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    20 ديسمبر 2023
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">إعلان هام: جدول امتحانات الفصل الدراسي الأول</h3>
+                                <p class="news-excerpt">تعلن إدارة المدرسة عن جدول امتحانات الفصل الدراسي الأول للعام الدراسي 2023/2024، والذي سيبدأ يوم الأحد الموافق 7 يناير 2024.</p>
+                                <div class="news-footer">
+                                    <span class="news-category">إعلانات</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal(10)">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- News Item 8 (Announcement) -->
+                        <div class="news-card" data-category="announcements" data-aos="fade-up" data-aos-delay="100">
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    25 ديسمبر 2023
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">إعلان: موعد اجتماع مجلس الآباء والمعلمين</h3>
+                                <p class="news-excerpt">تدعو إدارة المدرسة أولياء الأمور لحضور اجتماع مجلس الآباء والمعلمين يوم الخميس الموافق 4 يناير 2024 الساعة 11 صباحاً بقاعة الاجتماعات بالمدرسة.</p>
+                                <div class="news-footer">
+                                    <span class="news-category">إعلانات</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal(11)">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="load-more-container" data-aos="fade-up">
+                        <button class="load-more-btn" id="loadMoreBtn">
+                            <i class="material-icons">refresh</i>
+                            تحميل المزيد من الأخبار
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- News Sidebar -->
+                <div class="news-sidebar">
+                    <!-- Trending News Widget -->
+                    <div class="sidebar-widget" data-aos="fade-up">
+                        <h3 class="widget-title">الأخبار الأكثر قراءة</h3>
+                        <div class="trending-news">
+                            <!-- Trending Item 1 -->
+                            <div class="trending-news-item">
+                                <div class="trending-news-image">
+                                    <img src="https://via.placeholder.com/100x100" alt="صورة الخبر" loading="lazy">
+                                </div>
+                                <div class="trending-news-content">
+                                    <h4 class="trending-news-title">
+                                        <a href="#" onclick="openNewsModal(1)">افتتاح المعرض العلمي السنوي بمشاركة واسعة من الطلاب</a>
+                                    </h4>
+                                    <div class="trending-news-date">
+                                        <i class="material-icons">event</i>
+                                        15 مايو 2024
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Trending Item 2 -->
+                            <div class="trending-news-item">
+                                <div class="trending-news-image">
+                                    <img src="https://via.placeholder.com/100x100" alt="صورة الخبر" loading="lazy">
+                                </div>
+                                <div class="trending-news-content">
+                                    <h4 class="trending-news-title">
+                                        <a href="#" onclick="openNewsModal(5)">مسابقة الإبداع العلمي للمرحلة الإعدادية</a>
+                                    </h4>
+                                    <div class="trending-news-date">
+                                        <i class="material-icons">event</i>
+                                        10 أكتوبر 2023
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Trending Item 3 -->
+                            <div class="trending-news-item">
+                                <div class="trending-news-image">
+                                    <img src="https://via.placeholder.com/100x100" alt="صورة الخبر" loading="lazy">
+                                </div>
+                                <div class="trending-news-content">
+                                    <h4 class="trending-news-title">
+                                        <a href="#" onclick="openNewsModal(9)">حفل تكريم الطلاب المتفوقين</a>
+                                    </h4>
+                                    <div class="trending-news-date">
+                                        <i class="material-icons">event</i>
+                                        15 ديسمبر 2023
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Trending Item 4 -->
+                            <div class="trending-news-item">
+                                <div class="trending-news-image">
+                                    <img src="https://via.placeholder.com/100x100" alt="صورة الخبر" loading="lazy">
+                                </div>
+                                <div class="trending-news-content">
+                                    <h4 class="trending-news-title">
+                                        <a href="#" onclick="openNewsModal(10)">إعلان هام: جدول امتحانات الفصل الدراسي الأول</a>
+                                    </h4>
+                                    <div class="trending-news-date">
+                                        <i class="material-icons">event</i>
+                                        20 ديسمبر 2023
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Subscribe Widget -->
+                    <div class="sidebar-widget" data-aos="fade-up">
+                        <h3 class="widget-title">اشترك في النشرة الإخبارية</h3>
+                        <p>اشترك ليصلك كل جديد عن أخبار وفعاليات المدرسة</p>
+                        <form class="subscribe-form" id="subscribeForm">
+                            <input type="text" class="subscribe-input" placeholder="الاسم الكامل" required>
+                            <input type="email" class="subscribe-input" placeholder="البريد الإلكتروني" required>
+                            <button type="submit" class="subscribe-btn">اشترك الآن</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Tags Widget -->
+                    <div class="sidebar-widget" data-aos="fade-up">
+                        <h3 class="widget-title">الوسوم الشائعة</h3>
+                        <div class="tags-cloud">
+                            <a href="#" class="tag-item">امتحانات</a>
+                            <a href="#" class="tag-item">مسابقات</a>
+                            <a href="#" class="tag-item">أنشطة</a>
+                            <a href="#" class="tag-item">رياضة</a>
+                            <a href="#" class="tag-item">علوم</a>
+                            <a href="#" class="tag-item">فنون</a>
+                            <a href="#" class="tag-item">تكريم</a>
+                            <a href="#" class="tag-item">تكنولوجيا</a>
+                            <a href="#" class="tag-item">رحلات</a>
+                            <a href="#" class="tag-item">معارض</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- News Detail Modal -->
+            <div class="news-modal" id="newsModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="https://via.placeholder.com/1200x600" alt="صورة الخبر" id="modalImage">
+                        <div class="modal-close" id="modalClose">
+                            <i class="material-icons">close</i>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <h2 class="modal-title" id="modalTitle">عنوان الخبر</h2>
+                        <div class="modal-meta">
+                            <div class="modal-date" id="modalDate">
+                                <i class="material-icons">event</i>
+                                <span>15 سبتمبر 2023</span>
+                            </div>
+                            <div class="modal-category" id="modalCategory">
+                                <i class="material-icons">category</i>
+                                <span>أخبار أكاديمية</span>
+                            </div>
+                        </div>
+                        <div id="modalContent">
+                            <p>تم إعلان نتائج امتحانات الفصل الدراسي الأول للعام الدراسي 2023/2024، وقد حقق طلاب المدرسة نسب نجاح متميزة في مختلف المواد الدراسية.</p>
+                            <p>وقد أشاد مدير المدرسة الأستاذ محمود عكر بالمستوى المتميز للطلاب، وأكد على أن هذه النتائج تعكس الجهود المبذولة من قبل الطلاب والمعلمين وأولياء الأمور.</p>
+                            <p>وفيما يلي نسب النجاح في المواد الدراسية المختلفة:</p>
+                            <ul>
+                                <li>اللغة العربية: 95%</li>
+                                <li>اللغة الإنجليزية: 92%</li>
+                                <li>الرياضيات: 88%</li>
+                                <li>العلوم: 90%</li>
+                                <li>الدراسات الاجتماعية: 94%</li>
+                            </ul>
+                            <p>وقد تم تكريم الطلاب المتفوقين في حفل أقيم بالمدرسة بحضور أولياء الأمور وممثلين عن إدارة التعليم بالمحافظة.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="modal-share">
+                            <a href="#" class="modal-share-btn share-facebook" style="background-color: #3b5998;">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="modal-share-btn share-twitter" style="background-color: #1da1f2;">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="modal-share-btn share-whatsapp" style="background-color: #25d366;">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to Top Button -->
+            <div class="back-to-top" id="backToTop">
+                <i class="material-icons">arrow_upward</i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>مدرسة النصر الاعدادية</h3>
+                    <p>مؤسسة تعليمية رائدة تسعى لتقديم تعليم متميز وبناء جيل واعٍ قادر على مواجهة تحديات المستقبل.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="Facebook" onclick="handleSocialClick(event, 'https://www.facebook.com/AlNassrSchool')"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="Twitter" onclick="handleSocialClick(event, 'https://twitter.com/AlNassrSchool')"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/alnassrschool" target="_blank" rel="noopener noreferrer" aria-label="Instagram" onclick="handleSocialClick(event, 'https://www.instagram.com/alnassrschool')"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/c/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="YouTube" onclick="handleSocialClick(event, 'https://www.youtube.com/c/AlNassrSchool')"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="about.html">عن المدرسة</a></li>
+                        <li><a href="news.html">الأخبار</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>اتصل بنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> القنطرة، محافظة الإسماعيلية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 مدرسة النصر الاعدادية المشتركة ك15. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load required JS libraries -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+        // Initialize AOS (Animate on Scroll)
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false
+            });
+            
+            // Initialize Swiper
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                effect: 'fade',
+                fadeEffect: {
+                    crossFade: true
+                }
+            });
+            
+            // Handle social media clicks
+            function handleSocialClick(event, url) {
+                event.preventDefault();
+                window.open(url, '_blank');
+            }
+            
+            // Advanced Filter Toggle
+            const advancedFilterToggle = document.getElementById('advancedFilterToggle');
+            const advancedFilters = document.getElementById('advancedFilters');
+            
+            if (advancedFilterToggle && advancedFilters) {
+                advancedFilterToggle.addEventListener('click', function() {
+                    if (advancedFilters.style.display === 'none') {
+                        advancedFilters.style.display = 'flex';
+                        this.classList.add('active');
+                    } else {
+                        advancedFilters.style.display = 'none';
+                        this.classList.remove('active');
+                    }
+                });
+            }
+            
+            // News Filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const newsCards = document.querySelectorAll('.news-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get all news cards (including dynamically added ones)
+                    const allNewsCards = document.querySelectorAll('.news-card');
+                    
+                    // Filter news cards with animation
+                    allNewsCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('newsSearch');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    
+                    // Get all news cards (including dynamically added ones)
+                    const allNewsCards = document.querySelectorAll('.news-card');
+                    
+                    allNewsCards.forEach(card => {
+                        const title = card.querySelector('.news-title').textContent.toLowerCase();
+                        const excerpt = card.querySelector('.news-excerpt').textContent.toLowerCase();
+                        
+                        if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            }
+            
+            // Advanced filtering functionality
+            const dateFrom = document.getElementById('dateFrom');
+            const dateTo = document.getElementById('dateTo');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const sortBy = document.getElementById('sortBy');
+            
+            // Function to apply advanced filters
+            function applyAdvancedFilters() {
+                // Get all news cards (including dynamically added ones)
+                const allNewsCards = document.querySelectorAll('.news-card');
+                
+                allNewsCards.forEach(card => {
+                    let showCard = true;
+                    
+                    // Filter by date range
+                    if (dateFrom.value || dateTo.value) {
+                        const cardDateEl = card.querySelector('.news-date');
+                        if (cardDateEl) {
+                            // Extract date from the element (format: DD Month YYYY)
+                            const cardDateText = cardDateEl.textContent.trim();
+                            const cardDateParts = cardDateText.match(/\d+/g); // Extract numbers
+                            
+                            if (cardDateParts && cardDateParts.length >= 3) {
+                                // Create date object (assuming format is day, month, year)
+                                const cardDate = new Date(cardDateParts[2], cardDateParts[1] - 1, cardDateParts[0]);
+                                
+                                // Check date range
+                                if (dateFrom.value) {
+                                    const fromDate = new Date(dateFrom.value);
+                                    if (cardDate < fromDate) {
+                                        showCard = false;
+                                    }
+                                }
+                                
+                                if (dateTo.value) {
+                                    const toDate = new Date(dateTo.value);
+                                    if (cardDate > toDate) {
+                                        showCard = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Filter by category
+                    if (categoryFilter.value && showCard) {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (cardCategory !== categoryFilter.value) {
+                            showCard = false;
+                        }
+                    }
+                    
+                    // Show/hide card based on filters
+                    if (showCard) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+                
+                // Apply sorting
+                if (sortBy.value) {
+                    const newsGrid = document.getElementById('newsGrid');
+                    const cards = Array.from(allNewsCards);
+                    
+                    // Sort cards
+                    cards.sort((a, b) => {
+                        if (sortBy.value === 'newest') {
+                            // Sort by date (newest first)
+                            const dateA = a.querySelector('.news-date').textContent.trim();
+                            const dateB = b.querySelector('.news-date').textContent.trim();
+                            return dateB.localeCompare(dateA);
+                        } else if (sortBy.value === 'oldest') {
+                            // Sort by date (oldest first)
+                            const dateA = a.querySelector('.news-date').textContent.trim();
+                            const dateB = b.querySelector('.news-date').textContent.trim();
+                            return dateA.localeCompare(dateB);
+                        } else if (sortBy.value === 'title') {
+                            // Sort by title (A-Z)
+                            const titleA = a.querySelector('.news-title').textContent.trim();
+                            const titleB = b.querySelector('.news-title').textContent.trim();
+                            return titleA.localeCompare(titleB);
+                        }
+                        
+                        return 0;
+                    });
+                    
+                    // Reorder cards in the DOM
+                    cards.forEach(card => {
+                        newsGrid.appendChild(card);
+                    });
+                }
+            }
+            
+            // Add event listeners to advanced filter controls
+            if (dateFrom) dateFrom.addEventListener('change', applyAdvancedFilters);
+            if (dateTo) dateTo.addEventListener('change', applyAdvancedFilters);
+            if (categoryFilter) categoryFilter.addEventListener('change', applyAdvancedFilters);
+            if (sortBy) sortBy.addEventListener('change', applyAdvancedFilters);
+            
+            // Load More functionality
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            let currentItems = 8;
+            
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', function() {
+                    // Show loading state
+                    this.innerHTML = '<i class="material-icons fa-spin">refresh</i> جاري التحميل...';
+                    
+                    // Simulate loading delay
+                    setTimeout(() => {
+                        // Create skeleton loaders
+                        const newsGrid = document.getElementById('newsGrid');
+                        
+                        for (let i = 0; i < 4; i++) {
+                            const skeletonCard = document.createElement('div');
+                            skeletonCard.className = 'skeleton-card';
+                            skeletonCard.innerHTML = `
+                                <div class="skeleton skeleton-image"></div>
+                                <div class="skeleton-content">
+                                    <div class="skeleton skeleton-title"></div>
+                                    <div class="skeleton skeleton-text"></div>
+                                    <div class="skeleton skeleton-text"></div>
+                                    <div class="skeleton skeleton-text"></div>
+                                </div>
+                            `;
+                            newsGrid.appendChild(skeletonCard);
+                        }
+                        
+                        // Simulate API call delay
+                        setTimeout(() => {
+                            // Remove skeleton loaders
+                            document.querySelectorAll('.skeleton-card').forEach(skeleton => {
+                                skeleton.remove();
+                            });
+                            
+                            // Add new news items (in a real app, these would come from an API)
+                            const newItems = [
+                                {
+                                    category: 'academic',
+                                    date: '5 يناير 2024',
+                                    title: 'بدء التسجيل للفصل الدراسي الثاني',
+                                    excerpt: 'تعلن إدارة المدرسة عن بدء التسجيل للفصل الدراسي الثاني للعام الدراسي 2023/2024، وذلك اعتباراً من يوم الأحد الموافق 14 يناير 2024.'
+                                },
+                                {
+                                    category: 'activities',
+                                    date: '10 يناير 2024',
+                                    title: 'انطلاق مسابقة الخط العربي',
+                                    excerpt: 'تنظم المدرسة مسابقة الخط العربي للطلاب، وذلك ضمن فعاليات الأسبوع الثقافي، وسيتم تكريم الفائزين في حفل ختام الأسبوع الثقافي.'
+                                },
+                                {
+                                    category: 'events',
+                                    date: '15 يناير 2024',
+                                    title: 'زيارة وفد من وزارة التربية والتعليم',
+                                    excerpt: 'استقبلت المدرسة وفداً من وزارة التربية والتعليم، للاطلاع على تجربة المدرسة في تطبيق نظام التعليم الإلكتروني وتوظيف التكنولوجيا في العملية التعليمية.'
+                                },
+                                {
+                                    category: 'announcements',
+                                    date: '20 يناير 2024',
+                                    title: 'إعلان: موعد اختبارات منتصف الفصل الدراسي الثاني',
+                                    excerpt: 'تعلن إدارة المدرسة عن موعد اختبارات منتصف الفصل الدراسي الثاني، والتي ستبدأ يوم الأحد الموافق 25 فبراير 2024.'
+                                }
+                            ];
+                            
+                            newItems.forEach((item, index) => {
+                                const newsCard = document.createElement('div');
+                                newsCard.className = 'news-card';
+                                newsCard.setAttribute('data-category', item.category);
+                                newsCard.setAttribute('data-aos', 'fade-up');
+                                newsCard.setAttribute('data-aos-delay', index * 100);
+                                
+                                newsCard.innerHTML = `
+                                    <div class="news-social">
+                                        <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                        <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </a>
+                                    </div>
+                                    <div class="news-image">
+                                        <img src="https://via.placeholder.com/600x400" alt="صورة الخبر" loading="lazy">
+                                        <div class="news-date">
+                                            <i class="material-icons">event</i>
+                                            ${item.date}
+                                        </div>
+                                    </div>
+                                    <div class="news-content">
+                                        <h3 class="news-title">${item.title}</h3>
+                                        <p class="news-excerpt">${item.excerpt}</p>
+                                        <div class="news-footer">
+                                            <span class="news-category">${getCategoryName(item.category)}</span>
+                                            <a href="#" class="news-link" onclick="openNewsModal(${currentItems + index + 1})">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                        </div>
+                                    </div>
+                                `;
+                                
+                                newsGrid.appendChild(newsCard);
+                                
+                                // Refresh AOS
+                                AOS.refresh();
+                            });
+                            
+                            // Update current items count
+                            currentItems += newItems.length;
+                            
+                            // Reset button text
+                            loadMoreBtn.innerHTML = '<i class="material-icons">refresh</i> تحميل المزيد من الأخبار';
+                            
+                            // Hide button if no more items (for demo purposes, hide after second click)
+                            if (currentItems > 12) {
+                                loadMoreBtn.style.display = 'none';
+                            }
+                        }, 1500);
+                    }, 500);
+                });
+            }
+            
+            // Helper function to get category name in Arabic
+            function getCategoryName(category) {
+                const categories = {
+                    'academic': 'أخبار أكاديمية',
+                    'activities': 'أنشطة طلابية',
+                    'events': 'فعاليات',
+                    'announcements': 'إعلانات'
+                };
+                
+                return categories[category] || category;
+            }
+            
+            // News Modal functionality
+            const newsModal = document.getElementById('newsModal');
+            const modalClose = document.getElementById('modalClose');
+            
+            // Close modal when clicking the close button
+            if (modalClose) {
+                modalClose.addEventListener('click', function() {
+                    closeNewsModal();
+                });
+            }
+            
+            // Close modal when clicking outside the content
+            if (newsModal) {
+                newsModal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeNewsModal();
+                    }
+                });
+                
+                // Close modal with Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && newsModal.classList.contains('active')) {
+                        closeNewsModal();
+                    }
+                });
+            }
+            
+            // Subscribe form submission
+            const subscribeForm = document.getElementById('subscribeForm');
+            
+            if (subscribeForm) {
+                subscribeForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form inputs
+                    const nameInput = this.querySelector('input[type="text"]');
+                    const emailInput = this.querySelector('input[type="email"]');
+                    
+                    // Validate inputs (simple validation)
+                    if (nameInput.value.trim() === '' || emailInput.value.trim() === '') {
+                        alert('يرجى ملء جميع الحقول المطلوبة');
+                        return;
+                    }
+                    
+                    // Show success message (in a real app, this would send data to a server)
+                    alert('تم الاشتراك بنجاح! سيصلك كل جديد عن أخبار وفعاليات المدرسة.');
+                    
+                    // Reset form
+                    this.reset();
+                });
+            }
+            
+            // Back to Top button
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            if (backToTopBtn) {
+                // Show/hide button based on scroll position
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.classList.add('active');
+                    } else {
+                        backToTopBtn.classList.remove('active');
+                    }
+                });
+                
+                // Scroll to top when clicked
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Force visibility of important text elements after a short delay
+            setTimeout(function() {
+                document.querySelectorAll('h1, h2, h3, p, .section-title, .section-description, .news-card, .news-title, .news-excerpt').forEach(function(el) {
+                    el.style.opacity = '1';
+                    el.style.visibility = 'visible';
+                });
+            }, 500);
+        });
+        
+        // Open News Modal function (global scope for onclick handlers)
+        function openNewsModal(id) {
+            event.preventDefault();
+            
+            const newsModal = document.getElementById('newsModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDate = document.getElementById('modalDate').querySelector('span');
+            const modalCategory = document.getElementById('modalCategory').querySelector('span');
+            const modalContent = document.getElementById('modalContent');
+            const modalImage = document.getElementById('modalImage');
+            
+            // Sample news data (in a real app, this would come from a database)
+            const newsData = {
+                1: {
+                    title: 'افتتاح المعرض العلمي السنوي بمشاركة واسعة من الطلاب',
+                    date: '15 مايو 2024',
+                    category: 'فعاليات',
+                    content: `
+                        <p>شهدت المدرسة افتتاح المعرض العلمي السنوي بمشاركة أكثر من 200 طالب وطالبة، وبحضور مسؤولين من وزارة التربية والتعليم ومديرية التربية بالإسماعيلية.</p>
+                        <p>وقد أشاد المسؤولون بمستوى المشاريع العلمية المقدمة من الطلاب، والتي تنوعت بين مجالات الفيزياء والكيمياء والأحياء والتكنولوجيا.</p>
+                        <p>وقد تضمن المعرض الأقسام التالية:</p>
+                        <ul>
+                            <li>قسم الفيزياء: وشمل تجارب علمية متنوعة في مجالات الميكانيكا والكهرباء والمغناطيسية.</li>
+                            <li>قسم الكيمياء: وتضمن تجارب كيميائية مختلفة وتطبيقات عملية للمواد الكيميائية.</li>
+                            <li>قسم الأحياء: وشمل نماذج للكائنات الحية وتجارب في علم الوراثة والبيئة.</li>
+                            <li>قسم التكنولوجيا: وتضمن تطبيقات تكنولوجية مبتكرة من تصميم الطلاب.</li>
+                        </ul>
+                        <p>وفي ختام المعرض، تم تكريم الطلاب المشاركين وتوزيع الجوائز على أصحاب المشاريع المتميزة.</p>
+                    `
+                },
+                // Add more news data as needed
+            };
+            
+            // Set modal content based on news ID
+            if (newsData[id]) {
+                modalTitle.textContent = newsData[id].title;
+                modalDate.textContent = newsData[id].date;
+                modalCategory.textContent = newsData[id].category;
+                modalContent.innerHTML = newsData[id].content;
+            } else {
+                // Default content if news ID not found
+                modalTitle.textContent = 'عنوان الخبر';
+                modalDate.textContent = '15 سبتمبر 2023';
+                modalCategory.textContent = 'أخبار أكاديمية';
+                modalContent.innerHTML = '<p>محتوى الخبر غير متوفر حالياً.</p>';
+            }
+            
+            // Show modal with animation
+            newsModal.classList.add('active');
+            
+            // Prevent body scrolling
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close News Modal function
+        function closeNewsModal() {
+            const newsModal = document.getElementById('newsModal');
+            
+            // Hide modal with animation
+            newsModal.classList.remove('active');
+            
+            // Re-enable body scrolling
+            document.body.style.overflow = '';
+        }
+        
+        // Social media sharing function
+        function handleSocialClick(event, url) {
+            event.preventDefault();
+            window.open(url, '_blank');
+        }
+    </script>
+    
+    <!-- Firebase Configuration -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import { 
+          getFirestore, 
+          collection, 
+          getDocs, 
+          query, 
+          where, 
+          orderBy, 
+          limit,
+          doc,
+          getDoc 
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCUX53v4qLzn4Mz91HkfyE6rWwIqNza4Ak",
+        authDomain: "al-nassr-school.firebaseapp.com",
+        projectId: "al-nassr-school",
+        storageBucket: "al-nassr-school.firebasestorage.app",
+        messagingSenderId: "404145960502",
+        appId: "1:404145960502:web:2f1462d592a8cff3858a97",
+        measurementId: "G-MM97PYYM2H"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const analytics = getAnalytics(app);
+      
+      // Load news from Firestore when the page loads
+      document.addEventListener('DOMContentLoaded', async function() {
+        try {
+            // Get news grid element
+            const newsGrid = document.getElementById('newsGrid');
+            
+            // Clear existing news items (except for loading elements)
+            if (newsGrid) {
+                // Create loading indicators
+                for (let i = 0; i < 6; i++) {
+                    const skeletonCard = document.createElement('div');
+                    skeletonCard.className = 'skeleton-card';
+                    skeletonCard.innerHTML = `
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton-content">
+                            <div class="skeleton skeleton-title"></div>
+                            <div class="skeleton skeleton-text"></div>
+                            <div class="skeleton skeleton-text"></div>
+                            <div class="skeleton skeleton-text"></div>
+                        </div>
+                    `;
+                    newsGrid.appendChild(skeletonCard);
+                }
+            }
+            
+            // Get featured news for the slider
+            const featuredNewsQuery = query(
+                collection(db, "news"), 
+                orderBy("createdAt", "desc"), 
+                limit(3)
+            );
+            
+            const featuredSnapshot = await getDocs(featuredNewsQuery);
+            
+            // Update featured news slider
+            if (!featuredSnapshot.empty) {
+                const swiperWrapper = document.querySelector('.swiper-wrapper');
+                
+                if (swiperWrapper) {
+                    swiperWrapper.innerHTML = ''; // Clear existing slides
+                    
+                    featuredSnapshot.forEach((doc) => {
+                        const newsData = doc.data();
+                        
+                        // Create slide
+                        const slide = document.createElement('div');
+                        slide.className = 'swiper-slide';
+                        
+                        // Use the news image or a placeholder
+                        const imageUrl = newsData.imageUrl || 'https://via.placeholder.com/1200x600';
+                        
+                        // Format the category name in Arabic
+                        const categoryName = getCategoryName(newsData.category);
+                        
+                        slide.innerHTML = `
+                            <img src="${imageUrl}" alt="${newsData.title}" class="featured-news-image">
+                            <div class="featured-news-content">
+                                <div class="featured-news-meta">
+                                    <div class="featured-news-date">
+                                        <i class="material-icons">event</i>
+                                        ${newsData.date}
+                                    </div>
+                                    <div class="featured-news-category">
+                                        <i class="material-icons">category</i>
+                                        ${categoryName}
+                                    </div>
+                                </div>
+                                <h2 class="featured-news-title">${newsData.title}</h2>
+                                <p class="featured-news-excerpt">${newsData.excerpt}</p>
+                                <a href="#" class="featured-news-link" onclick="openNewsModal('${doc.id}')">
+                                    <i class="material-icons">visibility</i>
+                                    اقرأ المزيد
+                                </a>
+                            </div>
+                        `;
+                        
+                        swiperWrapper.appendChild(slide);
+                    });
+                    
+                    // Reinitialize Swiper
+                    if (typeof Swiper !== 'undefined') {
+                        new Swiper('.swiper-container', {
+                            loop: true,
+                            autoplay: {
+                                delay: 5000,
+                                disableOnInteraction: false,
+                            },
+                            pagination: {
+                                el: '.swiper-pagination',
+                                clickable: true,
+                            },
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+                            effect: 'fade',
+                            fadeEffect: {
+                                crossFade: true
+                            }
+                        });
+                    }
+                }
+            }
+            
+            // Get all news for the grid
+            const newsQuery = query(
+                collection(db, "news"), 
+                orderBy("createdAt", "desc")
+            );
+            
+            const querySnapshot = await getDocs(newsQuery);
+            
+            // Clear loading skeletons
+            if (newsGrid) {
+                const skeletons = newsGrid.querySelectorAll('.skeleton-card');
+                skeletons.forEach(skeleton => skeleton.remove());
+            }
+            
+            // Check if we have news
+            if (querySnapshot.empty) {
+                if (newsGrid) {
+                    const noNews = document.createElement('div');
+                    noNews.style.textAlign = 'center';
+                    noNews.style.gridColumn = '1 / -1';
+                    noNews.style.padding = '50px 0';
+                    noNews.innerHTML = '<p>لا توجد أخبار حالياً</p>';
+                    newsGrid.appendChild(noNews);
+                }
+            } else {
+                // Create news cards
+                querySnapshot.forEach((doc, index) => {
+                    const newsData = doc.data();
+                    const newsId = doc.id;
+                    
+                    // Create news card
+                    if (newsGrid) {
+                        const newsCard = document.createElement('div');
+                        newsCard.className = 'news-card';
+                        newsCard.setAttribute('data-category', newsData.category);
+                        newsCard.setAttribute('data-aos', 'fade-up');
+                        newsCard.setAttribute('data-aos-delay', (index % 3) * 100);
+                        
+                        // Use the news image or a placeholder
+                        const imageUrl = newsData.imageUrl || 'https://via.placeholder.com/600x400';
+                        
+                        // Format the category name in Arabic
+                        const categoryName = getCategoryName(newsData.category);
+                        
+                        newsCard.innerHTML = `
+                            <div class="news-social">
+                                <a href="#" class="social-share-btn share-facebook" aria-label="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-twitter" aria-label="مشاركة على تويتر">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-share-btn share-whatsapp" aria-label="مشاركة على واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="news-image">
+                                <img src="${imageUrl}" alt="${newsData.title}" loading="lazy">
+                                <div class="news-date">
+                                    <i class="material-icons">event</i>
+                                    ${newsData.date}
+                                </div>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">${newsData.title}</h3>
+                                <p class="news-excerpt">${newsData.excerpt}</p>
+                                <div class="news-footer">
+                                    <span class="news-category">${categoryName}</span>
+                                    <a href="#" class="news-link" onclick="openNewsModal('${newsId}')">اقرأ المزيد <i class="material-icons">arrow_forward</i></a>
+                                </div>
+                            </div>
+                        `;
+                        
+                        newsGrid.appendChild(newsCard);
+                    }
+                });
+                
+                // Refresh AOS animations if available
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+                
+                // Update trending news sidebar
+                updateTrendingNews(querySnapshot);
+            }
+            
+        } catch (error) {
+            console.error("Error loading news:", error);
+        }
+      });
+      
+      // Update trending news sidebar
+      function updateTrendingNews(querySnapshot) {
+        const trendingNews = document.querySelector('.trending-news');
+        
+        if (trendingNews) {
+            // Get first 4 news items
+            const newsItems = [];
+            querySnapshot.forEach(doc => {
+                if (newsItems.length < 4) {
+                    newsItems.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
+                }
+            });
+            
+            // Clear existing trending items
+            trendingNews.innerHTML = '';
+            
+            // Add trending items
+            newsItems.forEach(item => {
+                const trendingItem = document.createElement('div');
+                trendingItem.className = 'trending-news-item';
+                
+                // Use the news image or a placeholder
+                const imageUrl = item.imageUrl || 'https://via.placeholder.com/100x100';
+                
+                trendingItem.innerHTML = `
+                    <div class="trending-news-image">
+                        <img src="${imageUrl}" alt="${item.title}" loading="lazy">
+                    </div>
+                    <div class="trending-news-content">
+                        <h4 class="trending-news-title">
+                            <a href="#" onclick="openNewsModal('${item.id}')">${item.title}</a>
+                        </h4>
+                        <div class="trending-news-date">
+                            <i class="material-icons">event</i>
+                            ${item.date}
+                        </div>
+                    </div>
+                `;
+                
+                trendingNews.appendChild(trendingItem);
+            });
+        }
+      }
+      
+      // Helper function to get category name in Arabic
+      function getCategoryName(category) {
+        const categories = {
+            'academic': 'أخبار أكاديمية',
+            'activities': 'أنشطة طلابية',
+            'events': 'فعاليات',
+            'announcements': 'إعلانات'
+        };
+        
+        return categories[category] || category;
+      }
+      
+      // Make openNewsModal function available globally
+      window.openNewsModal = async function(newsId) {
+        try {
+            // Prevent default link behavior
+            event.preventDefault();
+            
+            // Get news data from Firestore
+            const docRef = doc(db, "news", newsId);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+                const newsData = docSnap.data();
+                
+                // Get modal elements
+                const newsModal = document.getElementById('newsModal');
+                const modalTitle = document.getElementById('modalTitle');
+                const modalDate = document.getElementById('modalDate').querySelector('span');
+                const modalCategory = document.getElementById('modalCategory').querySelector('span');
+                const modalContent = document.getElementById('modalContent');
+                const modalImage = document.getElementById('modalImage');
+                
+                // Update modal content
+                modalTitle.textContent = newsData.title;
+                modalDate.textContent = newsData.date;
+                modalCategory.textContent = getCategoryName(newsData.category);
+                modalContent.innerHTML = newsData.content;
+                
+                // Update modal image
+                if (newsData.imageUrl) {
+                    modalImage.src = newsData.imageUrl;
+                } else {
+                    modalImage.src = 'https://via.placeholder.com/1200x600';
+                }
+                
+                // Show modal
+                newsModal.classList.add('active');
+                
+                // Prevent body scrolling
+                document.body.style.overflow = 'hidden';
+            } else {
+                console.error("News not found");
+            }
+        } catch (error) {
+            console.error("Error opening news modal:", error);
+        }
+      };
+      
+      // Make closeNewsModal function available globally
+      window.closeNewsModal = function() {
+        const newsModal = document.getElementById('newsModal');
+        
+        // Hide modal
+        newsModal.classList.remove('active');
+        
+        // Re-enable body scrolling
+        document.body.style.overflow = '';
+      };
+    </script>
+</body>
+</html>

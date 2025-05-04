@@ -14,6 +14,604 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/main.css">
+<style>
+    /* Facilities Section Styles */
+    .facilities-section {
+        padding: 80px 0;
+        background-color: #f9f9f9;
+    }
+    
+    .section-description {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 40px;
+        font-size: 1.1rem;
+        color: #555;
+    }
+    
+    .facilities-filter {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        padding: 10px 20px;
+        background-color: #f0f0f0;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-family: 'Cairo', sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    
+    .filter-btn:hover {
+        background-color: #e0e0e0;
+    }
+    
+    .filter-btn.active {
+        background-color: #0056b3;
+        color: white;
+    }
+    
+    .facilities-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+    
+    .facility-card {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .facility-card-hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .facility-icon {
+        background-color: #0056b3;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    .facility-icon i {
+        font-size: 3rem;
+    }
+    
+    .facility-content {
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .facility-content h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #0056b3;
+        font-size: 1.5rem;
+    }
+    
+    .facility-content p {
+        margin-bottom: 20px;
+        line-height: 1.6;
+    }
+    
+    .facility-details {
+        background-color: #f5f5f5;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease;
+    }
+    
+    .facility-details ul {
+        margin: 0;
+        padding-right: 20px;
+    }
+    
+    .facility-details li {
+        margin-bottom: 8px;
+    }
+    
+    .facility-expand-btn {
+        align-self: flex-start;
+        background: none;
+        border: none;
+        color: #0056b3;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-family: 'Cairo', sans-serif;
+        font-size: 0.9rem;
+        padding: 0;
+        margin-top: auto;
+    }
+    
+    .facility-expand-btn i {
+        margin-right: 5px;
+        font-size: 1.2rem;
+    }
+    
+    .facilities-cta {
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    /* Facilities Counter Styles */
+    .facilities-counter {
+        background-color: #0056b3;
+        color: white;
+        padding: 60px 0;
+        margin-top: -30px;
+        margin-bottom: 80px;
+    }
+    
+    .counter-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .counter-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .counter-icon {
+        margin-bottom: 15px;
+    }
+    
+    .counter-icon i {
+        font-size: 3rem;
+    }
+    
+    .counter-number {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    
+    .counter-title {
+        font-size: 1.2rem;
+    }
+    
+    @media (max-width: 768px) {
+        .counter-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .facilities-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .counter-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Enhanced About Section Styles */
+    .about-section {
+        padding: 100px 0;
+        background-color: #f9f9f9;
+        position: relative;
+        overflow: hidden;
+        background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(249, 249, 249, 0.9) 100%);
+    }
+
+    .about-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%230056b3' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        opacity: 0.5;
+        z-index: 0;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .section-title {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: #0056b3;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, rgba(0,86,179,0.2) 0%, rgba(0,86,179,1) 50%, rgba(0,86,179,0.2) 100%);
+        border-radius: 2px;
+    }
+
+    .section-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 25px auto;
+        width: 60%;
+    }
+
+    .section-divider span {
+        height: 2px;
+        background: linear-gradient(90deg, rgba(0,86,179,0.1) 0%, rgba(0,86,179,0.3) 100%);
+        flex-grow: 1;
+    }
+
+    .section-divider i {
+        font-size: 1.8rem;
+        color: #0056b3;
+        margin: 0 20px;
+        background-color: rgba(0, 86, 179, 0.1);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-subtitle {
+        font-size: 1.3rem;
+        color: #555;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .about-content-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 40px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about-content {
+        padding: 40px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        position: relative;
+        z-index: 1;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 86, 179, 0.1);
+        overflow: hidden;
+    }
+
+    .about-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 150px;
+        height: 150px;
+        background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, transparent 60%);
+        border-radius: 0 0 0 100%;
+        z-index: -1;
+    }
+
+    .about-content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-highlight {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #0056b3;
+        position: relative;
+    }
+
+    .about-highlight i {
+        font-size: 1.4rem;
+        margin-left: 15px;
+        background-color: rgba(0, 86, 179, 0.1);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .about-highlight:hover i {
+        background-color: #0056b3;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .about-highlight span {
+        font-weight: 700;
+        font-size: 1.3rem;
+        position: relative;
+    }
+
+    .about-highlight span::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        right: 0;
+        width: 40px;
+        height: 2px;
+        background-color: rgba(0, 86, 179, 0.3);
+        transition: width 0.3s ease;
+    }
+
+    .about-highlight:hover span::after {
+        width: 100%;
+    }
+
+    .about-content p {
+        margin-bottom: 25px;
+        line-height: 1.8;
+        color: #444;
+        font-size: 1.1rem;
+        text-align: justify;
+        padding-right: 15px;
+        border-right: 3px solid rgba(0, 86, 179, 0.1);
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .about-cta {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 2px solid #0056b3;
+        color: #0056b3;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: inline-flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .btn-outline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: #0056b3;
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+
+    .btn-outline:hover::before {
+        width: 100%;
+    }
+
+    .btn-outline i {
+        margin-left: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .btn-outline:hover {
+        color: white;
+    }
+
+    .btn-outline:hover i {
+        transform: translateX(-5px);
+    }
+
+    /* About Section Animations */
+    .animate-header {
+        animation: fadeInDown 0.8s ease forwards;
+    }
+
+    .animate-about {
+        animation: fadeIn 1s ease forwards;
+    }
+
+    .about-highlight {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .animate-highlight {
+        animation: fadeInUp 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Administration Section Styles */
+    .admin-image {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .admin-photo {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .admin-card:hover .admin-photo {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        .about-content-wrapper {
+            flex-direction: column;
+        }
+        
+        .section-title {
+            font-size: 2.4rem;
+        }
+        
+        .about-content {
+            padding: 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2.2rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+        }
+        
+        .about-highlight span {
+            font-size: 1.2rem;
+        }
+        
+        .about-content p {
+            font-size: 1rem;
+        }
+        
+        .btn-outline {
+            padding: 10px 25px;
+            font-size: 1rem;
+        }
+        
+        .facilities-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .admin-photo {
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+        }
+        
+        .about-highlight {
+            flex-direction: column;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .about-highlight i {
+            margin-left: 0;
+            margin-bottom: 10px;
+        }
+        
+        .about-highlight span::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-content p {
+            text-align: center;
+            border-right: none;
+            padding-right: 0;
+            border-bottom: 3px solid rgba(0, 86, 179, 0.1);
+            padding-bottom: 15px;
+        }
+        
+        .admin-photo {
+            width: 120px;
+            height: 120px;
+        }
+    }
+</style>
 </head>
 <body>
     <!-- Fallback for users with JavaScript disabled -->
@@ -33,6 +631,7 @@
                 <ul>
                     <li><a href="index.html">الرئيسية</a></li>
                     <li><a href="about.html" class="active" aria-current="page">عن المدرسة</a></li>
+                    <li><a href="news.html">الأخبار</a></li>
                     <li><a href="contact.html">اتصل بنا</a></li>
                 </ul>
             </nav>
@@ -56,18 +655,34 @@
     <!-- About Section -->
     <section class="about-section">
         <div class="container">
-            <div class="row">
+            <div class="section-header">
+                <h2 class="section-title">نبذة عن مدرسة النصر الاعدادية</h2>
+                <div class="section-divider">
+                    <span></span>
+                    <i class="fas fa-graduation-cap"></i>
+                    <span></span>
+                </div>
+                <p class="section-subtitle">تعرف على تاريخنا وإنجازاتنا ورؤيتنا للتعليم المتميز</p>
+            </div>
+            
+            <div class="row about-content-wrapper">
                 <div class="col">
                     <div class="about-content">
-                        <h2>نبذة عن مدرسة النصر الاعدادية</h2>
-                        <p>تأسست مدرسة النصر الاعدادية في عام 1995 بهدف توفير تعليم متميز يجمع بين الأصالة والمعاصرة. بدأت المدرسة بعدد قليل من الطلاب والمعلمين، وتطورت على مر السنين لتصبح واحدة من أبرز المؤسسات التعليمية في المنطقة.</p>
-                        <p>تضم المدرسة اليوم أكثر من 1000 طالب وطالبة، وتقدم برامج تعليمية متنوعة تلبي احتياجات الطلاب في مختلف المراحل الدراسية، من مرحلة رياض الأطفال وحتى المرحلة الثانوية.</p>
-                        <p>تتميز مدرسة النصر الاعدادية المشتركة ك15 بكادر تعليمي مؤهل ومتميز، ومرافق حديثة ومتطورة، وبيئة تعليمية محفزة تساعد الطلاب على تحقيق أقصى إمكاناتهم وتنمية مهاراتهم وقدراتهم.</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="about-image">
-                        <img src="images/placeholder.txt" alt="صورة المدرسة">
+                        <div class="about-highlight">
+                            <i class="fas fa-history"></i>
+                            <span>تاريخ المدرسة</span>
+                        </div>
+                        <p>في عام 2016، شهدت المدرسة توسعات كبيرة شملت إنشاء جناح جديد يحتوي على 8 فصول دراسية، مما رفع إجمالي عدد الفصول إلى 18 فصلاً. كما تم تطوير المرافق الخدمية بإضافة 18 دورة مياه، مما ساهم في تحسين البيئة التعليمية وتقليل الكثافة الطلابية في الفصول من 50 إلى 40 طالباً وطالبة.</p>
+                        
+                        <div class="about-highlight">
+                            <i class="fas fa-medal"></i>
+                            <span>نتائج أكاديمية متميزة</span>
+                        </div>
+                        <p>تتميز المدرسة بنتائجها الأكاديمية المتميزة في امتحانات الشهادة الإعدادية، حيث حققت نسب نجاح مرتفعة في مختلف المواد الدراسية، مما يعكس جودة العملية التعليمية وكفاءة الكادر التدريسي.</p>
+                        
+                        <div class="about-cta">
+                            <a href="contact.html" class="btn btn-outline"><i class="fas fa-envelope"></i> تواصل معنا</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,7 +699,7 @@
                             <i class="material-icons">track_changes</i>
                         </div>
                         <h3>رسالتنا</h3>
-                        <p>تقديم تعليم متميز يجمع بين الأصالة والمعاصرة، وإعداد جيل واعٍ قادر على مواجهة تحديات المستقبل والمساهمة في بناء المجتمع وتطويره.</p>
+                        <p>نسعى لتوفير تعليم حكومي متميز في بيئة تربوية محفزة، تجمع بين الأصالة والمعاصرة، وتهدف إلى إعداد جيل واعٍ قادر على المساهمة في تنمية المجتمع ومواجهة تحديات المستقبل.</p>
                     </div>
                 </div>
                 <div class="col">
@@ -99,159 +714,104 @@
             </div>
         </div>
     </section>
-
-    <!-- Values Section -->
-    <section class="values-section">
+    <!-- Administration Section -->
+    <section class="administration-section">
         <div class="container">
-            <h2 class="section-title">قيمنا</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="material-icons">star</i>
+            <h2 class="section-title">مدير المدرسة</h2>
+            <div class="admin-grid">
+                <div class="admin-card">
+                    <div class="admin-image">
+                        <img src="https://via.placeholder.com/200x200" alt="صورة مدير المدرسة" class="admin-photo">
                     </div>
-                    <h3>التميز</h3>
-                    <p>نسعى دائماً للتميز في كل ما نقدمه من خدمات تعليمية وتربوية.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-handshake"></i>
+                    <div class="admin-content">
+                        <h3>الأستاذ محمود عكر</h3>
+                        <p class="admin-title">مدير المدرسة</p>
                     </div>
-                    <h3>الاحترام</h3>
-                    <p>نؤمن بأهمية احترام الذات والآخرين وتقدير التنوع والاختلاف.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="material-icons">people</i>
-                    </div>
-                    <h3>التعاون</h3>
-                    <p>نشجع على العمل الجماعي والتعاون بين جميع أفراد المجتمع المدرسي.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="material-icons">lightbulb</i>
-                    </div>
-                    <h3>الإبداع</h3>
-                    <p>نحفز الطلاب على التفكير الإبداعي والابتكار وإيجاد حلول للمشكلات.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>العدالة</h3>
-                    <p>نلتزم بمبادئ العدالة والمساواة في التعامل مع جميع الطلاب والعاملين.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>المسؤولية</h3>
-                    <p>نغرس في طلابنا قيم المسؤولية والالتزام تجاه أنفسهم ومجتمعهم ووطنهم.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Facilities Section -->
-    <section class="facilities-section">
-        <div class="container">
-            <h2 class="section-title">مرافق المدرسة</h2>
-            <div class="facilities-grid">
-                <div class="facility-card">
-                    <div class="facility-image">
-                        <img src="images/placeholder.txt" alt="الفصول الدراسية">
-                    </div>
-                    <div class="facility-content">
-                        <h3>الفصول الدراسية</h3>
-                        <p>فصول دراسية مجهزة بأحدث التقنيات التعليمية وتصميم يراعي المعايير التربوية الحديثة.</p>
-                    </div>
+<section class="facilities-section" id="facilities">
+    <div class="container">
+        <h2 class="section-title">مرافق المدرسة</h2>
+        
+        <!-- Facilities Filter -->
+        <div class="facilities-filter">
+            <button class="filter-btn active" data-filter="all">جميع المرافق</button>
+            <button class="filter-btn" data-filter="academic">المرافق الأكاديمية</button>
+            <button class="filter-btn" data-filter="services">الخدمات</button>
+        </div>
+        
+        <!-- Facilities Grid -->
+        <div class="facilities-grid">
+            <!-- Academic Facilities -->
+            <div class="facility-card" data-category="academic">
+                <div class="facility-icon">
+                    <i class="material-icons">meeting_room</i>
                 </div>
-                <div class="facility-card">
-                    <div class="facility-image">
-                        <img src="images/placeholder.txt" alt="المختبرات العلمية">
+                <div class="facility-content">
+                    <h3>الفصول الدراسية</h3>
+                    <p>تضم المدرسة 18 فصلًا دراسيًا، بعد إضافة جناح جديد يحتوي على 8 فصول خلال توسعات عام 2016، مما ساهم في تقليل الكثافة الطلابية داخل الفصول.</p>
+                    <div class="facility-details">
+                        <ul>
+                            <li>مساحة كل فصل: 50 متر مربع</li>
+                            <li>متوسط عدد الطلاب: 40 طالب</li>
+                            <li>مجهزة بسبورات ذكية</li>
+                            <li>إضاءة وتهوية مناسبة</li>
+                        </ul>
                     </div>
-                    <div class="facility-content">
-                        <h3>المختبرات العلمية</h3>
-                        <p>مختبرات علمية متطورة للفيزياء والكيمياء والأحياء مجهزة بأحدث الأدوات والمعدات.</p>
-                    </div>
+                    <button class="facility-expand-btn">عرض المزيد <i class="material-icons">expand_more</i></button>
                 </div>
-                <div class="facility-card">
-                    <div class="facility-image">
-                        <img src="images/placeholder.txt" alt="المكتبة">
-                    </div>
-                    <div class="facility-content">
-                        <h3>المكتبة</h3>
-                        <p>مكتبة غنية بالكتب والمراجع العلمية والأدبية والثقافية، بالإضافة إلى مصادر تعليمية إلكترونية.</p>
-                    </div>
+            </div>
+            
+            <!-- Services Facilities -->
+            <div class="facility-card" data-category="services">
+                <div class="facility-icon">
+                    <i class="material-icons">wc</i>
                 </div>
-                <div class="facility-card">
-                    <div class="facility-image">
-                        <img src="images/placeholder.txt" alt="معمل الحاسوب">
+                <div class="facility-content">
+                    <h3>دورات المياه</h3>
+                    <p>تم إنشاء 18 دورة مياه جديدة ضمن التوسعات، لتحسين الخدمات الصحية للطلاب والطالبات.</p>
+                    <div class="facility-details">
+                        <ul>
+                            <li>18 دورة مياه حديثة</li>
+                            <li>مرافق منفصلة للبنين والبنات</li>
+                            <li>صيانة دورية</li>
+                            <li>مطابقة لمعايير النظافة</li>
+                        </ul>
                     </div>
-                    <div class="facility-content">
-                        <h3>معمل الحاسوب</h3>
-                        <p>معامل حاسوب مجهزة بأحدث أجهزة الكمبيوتر والبرمجيات التعليمية.</p>
-                    </div>
+                    <button class="facility-expand-btn">عرض المزيد <i class="material-icons">expand_more</i></button>
                 </div>
-                <div class="facility-card">
-                    <div class="facility-image">
-                        <img src="images/placeholder.txt" alt="الملاعب الرياضية">
-                    </div>
-                    <div class="facility-content">
-                        <h3>الملاعب الرياضية</h3>
-                        <p>ملاعب رياضية متنوعة لممارسة مختلف الأنشطة الرياضية، بما في ذلك كرة القدم والسلة والطائرة.</p>
-                    </div>
+            </div>
+            
+            <div class="facility-card" data-category="services">
+                <div class="facility-icon">
+                    <i class="material-icons">groups</i>
                 </div>
-                <div class="facility-card">
-                    <div class="facility-image">
-                        <img src="images/placeholder.txt" alt="المسرح">
+                <div class="facility-content">
+                    <h3>الطاقة الاستيعابية</h3>
+                    <p>تستوعب المدرسة حوالي 750 طالبًا وطالبة، مع تقليل الكثافة الطلابية في الفصول من 50 إلى 40 طالبًا.</p>
+                    <div class="facility-details">
+                        <ul>
+                            <li>750 طالب وطالبة</li>
+                            <li>40 طالب في الفصل الواحد</li>
+                            <li>18 فصل دراسي</li>
+                            <li>3 مراحل دراسية</li>
+                        </ul>
                     </div>
-                    <div class="facility-content">
-                        <h3>المسرح</h3>
-                        <p>مسرح مجهز لإقامة الأنشطة الفنية والثقافية والاحتفالات المدرسية.</p>
-                    </div>
+                    <button class="facility-expand-btn">عرض المزيد <i class="material-icons">expand_more</i></button>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Administration Section -->
-    <section class="administration-section">
-        <div class="container">
-            <h2 class="section-title">إدارة المدرسة</h2>
-            <div class="admin-grid">
-                <div class="admin-card">
-                    <div class="admin-image">
-                        <img src="images/placeholder.txt" alt="مدير المدرسة">
-                    </div>
-                    <div class="admin-content">
-                        <h3>الأستاذ محمد أحمد</h3>
-                        <p class="admin-title">مدير المدرسة</p>
-                        <p>يمتلك خبرة تربوية تزيد عن 20 عاماً في مجال التعليم والإدارة المدرسية، وحاصل على درجة الماجستير في الإدارة التربوية.</p>
-                    </div>
-                </div>
-                <div class="admin-card">
-                    <div class="admin-image">
-                        <img src="images/placeholder.txt" alt="نائب المدير">
-                    </div>
-                    <div class="admin-content">
-                        <h3>الأستاذة سارة محمود</h3>
-                        <p class="admin-title">نائب المدير</p>
-                        <p>تمتلك خبرة تربوية تزيد عن 15 عاماً، وحاصلة على درجة الماجستير في المناهج وطرق التدريس.</p>
-                    </div>
-                </div>
-                <div class="admin-card">
-                    <div class="admin-image">
-                        <img src="images/placeholder.txt" alt="المدير الأكاديمي">
-                    </div>
-                    <div class="admin-content">
-                        <h3>الدكتور أحمد خالد</h3>
-                        <p class="admin-title">المدير الأكاديمي</p>
-                        <p>حاصل على درجة الدكتوراه في التربية، ويمتلك خبرة واسعة في تطوير المناهج وتقييم الأداء الأكاديمي.</p>
-                    </div>
-                </div>
-            </div>
+        
+        <!-- Facilities CTA -->
+        <div class="facilities-cta">
+            <a href="contact.html" class="btn btn-primary"><i class="material-icons">contact_support</i> استفسر عن المرافق</a>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Call to Action Section -->
     <section class="cta">
@@ -272,10 +832,10 @@
                     <h3>مدرسة النصر الاعدادية</h3>
                     <p>مؤسسة تعليمية رائدة تسعى لتقديم تعليم متميز وبناء جيل واعٍ قادر على مواجهة تحديات المستقبل.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="Facebook" onclick="handleSocialClick(event, 'https://www.facebook.com/AlNassrSchool')"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="Twitter" onclick="handleSocialClick(event, 'https://twitter.com/AlNassrSchool')"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/alnassrschool" target="_blank" rel="noopener noreferrer" aria-label="Instagram" onclick="handleSocialClick(event, 'https://www.instagram.com/alnassrschool')"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/c/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="YouTube" onclick="handleSocialClick(event, 'https://www.youtube.com/c/AlNassrSchool')"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -283,19 +843,14 @@
                     <ul>
                         <li><a href="index.html">الرئيسية</a></li>
                         <li><a href="about.html">عن المدرسة</a></li>
-                        <li><a href="academics.html">البرامج الأكاديمية</a></li>
-                        <li><a href="teachers.html">المعلمون</a></li>
-                        <li><a href="activities.html">الأنشطة</a></li>
-                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="news.html">الأخبار</a></li>
                         <li><a href="contact.html">اتصل بنا</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h3>اتصل بنا</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> شارع المدارس، المدينة</li>
-                        <li><i class="fas fa-phone"></i> +123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> info@success-school.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> القنطرة، محافظة الإسماعيلية</li>
                     </ul>
                 </div>
             </div>
@@ -306,19 +861,114 @@
     </footer>
 
     <script src="scripts/main.js"></script>
+    <script src="scripts/facilities.js"></script>
     <script>
-        // Ensure text is visible even if animations fail
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.classList.add('page-loaded');
+    function handleSocialClick(event, url) {
+        event.preventDefault();
+        window.open(url, '_blank');
+    }
+    
+    // Ensure text is visible even if animations fail
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('page-loaded');
+        
+        // Force visibility of important text elements after a short delay
+        setTimeout(function() {
+            document.querySelectorAll('h1, h2, h3, p, .section-title, .facility-card, .facility-icon, .facility-content, .about-highlight, .about-content').forEach(function(el) {
+                el.style.opacity = '1';
+                el.style.visibility = 'visible';
+            });
             
-            // Force visibility of important text elements after a short delay
-            setTimeout(function() {
-                document.querySelectorAll('h1, h2, h3, p, .section-title').forEach(function(el) {
-                    el.style.opacity = '1';
-                    el.style.visibility = 'visible';
-                });
+            // Initialize section animations
+            document.querySelectorAll('.section-header').forEach(header => {
+                header.classList.add('animate-header');
+            });
+            
+            document.querySelector('.about-section').classList.add('animate-about');
+            
+            // Add animation to about highlights
+            document.querySelectorAll('.about-highlight').forEach((highlight, index) => {
+                setTimeout(() => {
+                    highlight.classList.add('animate-highlight');
+                }, 300 * index);
+            });
+            
+            // Initialize animations with a delay
+            setTimeout(() => {
+                // Other animations can be added here if needed
             }, 500);
+        }, 500);
+    });
+</script>
+    <script>
+    // Enhanced Counter Animation
+    function animateCounters() {
+        const counters = document.querySelectorAll('.counter-number');
+        const speed = 200; // The lower the faster
+        
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-count');
+            let count = 0;
+            
+            const updateCount = () => {
+                const increment = target / speed;
+                
+                if (count < target) {
+                    count += increment;
+                    counter.innerText = Math.ceil(count);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            
+            updateCount();
         });
+    }
+    
+    // Trigger counter animation when the section is in view
+    document.addEventListener('DOMContentLoaded', function() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const counterSections = document.querySelectorAll('.facilities-counter');
+        if (counterSections.length > 0) {
+            counterSections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+    });
+</script>
+
+    <!-- Firebase Configuration -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyCUX53v4qLzn4Mz91HkfyE6rWwIqNza4Ak",
+        authDomain: "al-nassr-school.firebaseapp.com",
+        projectId: "al-nassr-school",
+        storageBucket: "al-nassr-school.firebasestorage.app",
+        messagingSenderId: "404145960502",
+        appId: "1:404145960502:web:2f1462d592a8cff3858a97",
+        measurementId: "G-MM97PYYM2H"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
     </script>
 </body>
 </html>

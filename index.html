@@ -14,6 +14,32 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Feature Link Style */
+        .feature-link {
+            display: inline-flex;
+            align-items: center;
+            color: #0056b3;
+            text-decoration: none;
+            margin-top: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-link i {
+            font-size: 1rem;
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-link:hover {
+            color: #003d7a;
+        }
+        
+        .feature-link:hover i {
+            transform: translateX(5px);
+        }
+    </style>
 </head>
 <body>
     <!-- Fallback for users with JavaScript disabled -->
@@ -26,6 +52,7 @@
     <header class="main-header">
         <div class="container">
             <div class="logo">
+                <img src="https://via.placeholder.com/150x50" alt="شعار مدرسة النصر" class="school-logo">
                 <h1>مدرسة النصر الاعدادية المشتركة ك15</h1>
             </div>
             <nav class="main-nav" aria-label="القائمة الرئيسية">
@@ -33,6 +60,7 @@
                 <ul>
                     <li><a href="index.html" class="active" aria-current="page">الرئيسية</a></li>
                     <li><a href="about.html">عن المدرسة</a></li>
+                    <li><a href="news.html">الأخبار</a></li>
                     <li><a href="contact.html">اتصل بنا</a></li>
                 </ul>
             </nav>
@@ -43,7 +71,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" style="background-image: url('https://via.placeholder.com/1920x1080');">
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content animate-fade-in">
@@ -63,7 +91,7 @@
         <div class="container">
             <h2 class="section-title" style="visibility: visible; opacity: 1; font-size: 2.5rem; margin-bottom: 2rem;">لماذا مدرسة النصر؟</h2>
             <p class="section-description" style="text-align: center; max-width: 800px; margin: 0 auto 3rem; visibility: visible; opacity: 1; font-size: 1.2rem;">
-                تتميز مدرسة النصر بالعديد من المزايا التي تجعلها الخيار الأمثل لتعليم أبنائكم، حيث نوفر بيئة تعليمية متكاملة تجمع بين الجودة الأكاديمية والتربية القيمية والأنشطة المتنوعة
+                مدرسة النصر الإعدادية المشتركة ك15 هي مؤسسة تعليمية حكومية رائدة في محافظة الإسماعيلية، تتميز ببيئة تعليمية متكاملة ونتائج أكاديمية متميزة، مع التركيز على التطوير المستمر للمرافق والخدمات التعليمية.
             </p>
             <div class="features-grid">
                 <div class="feature-card" style="visibility: visible; opacity: 1;">
@@ -85,7 +113,8 @@
                         <i class="material-icons">science</i>
                     </div>
                     <h3 style="visibility: visible; opacity: 1;">مرافق حديثة</h3>
-                    <p style="visibility: visible; opacity: 1;">مختبرات علمية متطورة وقاعات دراسية مجهزة بأحدث التقنيات</p>
+                    <p style="visibility: visible; opacity: 1;">مختبرات علمية متطورة وقاعات دراسية مجهزة بأحدث التقنيات ومرافق رياضية وخدمية متكاملة</p>
+                    <a href="about.html#facilities" class="feature-link">تعرف على مرافقنا <i class="material-icons">arrow_forward</i></a>
                 </div>
                 <div class="feature-card" style="visibility: visible; opacity: 1;">
                     <div class="feature-icon">
@@ -120,10 +149,10 @@
                     <h3>مدرسة النصر الاعدادية</h3>
                     <p>مؤسسة تعليمية رائدة تسعى لتقديم تعليم متميز وبناء جيل واعٍ قادر على مواجهة تحديات المستقبل.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="Facebook" onclick="handleSocialClick(event, 'https://www.facebook.com/AlNassrSchool')"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="Twitter" onclick="handleSocialClick(event, 'https://twitter.com/AlNassrSchool')"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/alnassrschool" target="_blank" rel="noopener noreferrer" aria-label="Instagram" onclick="handleSocialClick(event, 'https://www.instagram.com/alnassrschool')"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/c/AlNassrSchool" target="_blank" rel="noopener noreferrer" aria-label="YouTube" onclick="handleSocialClick(event, 'https://www.youtube.com/c/AlNassrSchool')"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -131,19 +160,14 @@
                     <ul>
                         <li><a href="index.html">الرئيسية</a></li>
                         <li><a href="about.html">عن المدرسة</a></li>
-                        <li><a href="academics.html">البرامج الأكاديمية</a></li>
-                        <li><a href="teachers.html">المعلمون</a></li>
-                        <li><a href="activities.html">الأنشطة</a></li>
-                        <li><a href="gallery.html">معرض الصور</a></li>
+                        <li><a href="news.html">الأخبار</a></li>
                         <li><a href="contact.html">اتصل بنا</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact">
                     <h3>اتصل بنا</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> شارع المدارس، المدينة</li>
-                        <li><i class="fas fa-phone"></i> +123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> info@success-school.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> القنطرة، محافظة الإسماعيلية</li>
                     </ul>
                 </div>
             </div>
@@ -155,7 +179,11 @@
 
     <script src="scripts/main.js"></script>
     <script>
-        // Ensure text is visible even if animations fail
+        function handleSocialClick(event, url) {
+            event.preventDefault();
+            window.open(url, '_blank');
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.add('page-loaded');
             
@@ -167,6 +195,31 @@
                 });
             }, 500);
         });
+    </script>
+    
+    <!-- Firebase Configuration -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyCUX53v4qLzn4Mz91HkfyE6rWwIqNza4Ak",
+        authDomain: "al-nassr-school.firebaseapp.com",
+        projectId: "al-nassr-school",
+        storageBucket: "al-nassr-school.firebasestorage.app",
+        messagingSenderId: "404145960502",
+        appId: "1:404145960502:web:2f1462d592a8cff3858a97",
+        measurementId: "G-MM97PYYM2H"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
     </script>
 </body>
 </html>
