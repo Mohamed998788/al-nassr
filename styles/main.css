@@ -1834,6 +1834,70 @@ textarea.form-control {
     color: var(--primary-color);
 }
 
+/* Enhanced Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+    border-radius: 10px;
+    border: 2px solid #f5f5f5;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #2980b9, #27ae60);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Firefox Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #3498db #f5f5f5;
+}
+
+/* Custom Scrollbar for Specific Elements */
+textarea::-webkit-scrollbar,
+.scrollable-element::-webkit-scrollbar {
+    width: 8px;
+}
+
+textarea::-webkit-scrollbar-thumb,
+.scrollable-element::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #3498db, #2ecc71);
+    border: 2px solid #f5f5f5;
+}
+
+/* Smooth Scrolling for Whole Page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for RTL Layout */
+[dir="rtl"] ::-webkit-scrollbar {
+    left: 0;
+    right: auto;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        border-width: 1px;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
     html { font-size: 15.5px; } /* تعديل طفيف */
@@ -2016,4 +2080,35 @@ textarea.form-control {
     .footer-bottom p { font-size: 0.85rem; }
     
     section { padding: var(--spacing-lg) 0; }
+}
+
+/* Hide menu toggle buttons on desktop */
+@media screen and (min-width: 992px) {
+    .menu-toggle,
+    .close-menu-btn {
+        display: none;
+    }
+    
+    .main-nav {
+        position: static;
+        transform: none;
+        width: auto;
+        height: auto;
+        padding: 0;
+        background: none;
+        box-shadow: none;
+    }
+    
+    .main-nav ul {
+        display: flex;
+        gap: 1.5rem;
+    }
+}
+
+/* Show menu toggle buttons only on mobile */
+@media screen and (max-width: 991px) {
+    .menu-toggle,
+    .close-menu-btn {
+        display: block;
+    }
 }
